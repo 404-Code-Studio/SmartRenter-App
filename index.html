@@ -1,178 +1,178 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="de">
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />         
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+            integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>SmartSenior App - Startseite</title>
         <style>
-:root {
-  --bg: #FFFFFF;
-  --text: #111111;
-  --primary: #00B7C2;
-  --primary-dark: #0096A0;
-  --primary-light: #E6F8F9;
-  --success: #16A34A;
-  --warning: #F59E0B;
-  --danger: #DC2626;
-}
+            :root {
+                --bg: #ffffff;
+                --text: #111111;
+                --primary: #00b7c2;
+                --primary-dark: #0096a0;
+                --primary-light: #e6f8f9;
+                --success: #16a34a;
+                --warning: #f59e0b;
+                --danger: #dc2626;
+            }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-}
+            body {
+                background: var(--bg);
+                color: var(--text);
+                font-family: system-ui, sans-serif;
+                line-height: 1.5;
+            }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 12px;
-    }
-    
-    .right {
-        right: 15px;
-    }
-}
+            @media (max-width: 768px) {
+                .container {
+                    padding: 12px;
+                }
 
-.interactive {
-  background: var(--primary);
-  color: white;
-  padding: .6rem 1.2rem;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s;
-}
+                .right {
+                    right: 15px;
+                }
+            }
 
-.interactive:hover {
-  background: var(--primary-dark);
-}
+            .interactive {
+                background: var(--primary);
+                color: white;
+                padding: 0.6rem 1.2rem;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
 
-.highlight {
-  background: var(--primary-light);
-  padding: 1rem;
-  border-radius: 8px;
-}
+            .interactive:hover {
+                background: var(--primary-dark);
+            }
 
-.container {
-    border: 1px solid #ddd;        /* Weicher statt harter schwarzer Rahmen */
-    border-radius: 8px;            /* Weniger Rundung */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtiler Schatten statt inset */
-    padding: 15px;
-    width: 90%;                   /* Vollbreite statt 90% */
-    margin-bottom: 15px;           /* Abstand zwischen Containern */
-}
+            .highlight {
+                background: var(--primary-light);
+                padding: 1rem;
+                border-radius: 8px;
+            }
 
-.container-title {
-    line-height: 0.3;
-}
+            .container {
+                border: 1px solid #ddd; /* Weicher statt harter schwarzer Rahmen */
+                border-radius: 8px; /* Weniger Rundung */
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtiler Schatten statt inset */
+                padding: 15px;
+                width: 90%; /* Vollbreite statt 90% */
+                margin-bottom: 15px; /* Abstand zwischen Containern */
+            }
 
-.toggle-icon {
-    cursor: pointer;
-    transition: transform 0.5s ease;
-    color: var(--primary);
-}
+            .container-title {
+                line-height: 0.3;
+            }
 
-.toggle-icon:hover {
-    transform: scale(1.1);
-}
+            .toggle-icon {
+                cursor: pointer;
+                transition: transform 0.5s ease;
+                color: var(--primary);
+            }
 
-.toggle-icon.rotated {
-    transform: rotate(180deg);
-}
+            .toggle-icon:hover {
+                transform: scale(1.1);
+            }
 
-.right {
-    position: absolute;
-    right: 10%;
-}
+            .toggle-icon.rotated {
+                transform: rotate(180deg);
+            }
+
+            .right {
+                position: absolute;
+                right: 10%;
+            }
         </style>
     </head>
     <body>
         <h1>SmartSenior</h1>
-        <hr/>
-        <div id="erklärung" style="display: none;">
-        <p>
-"SeniorSmart" – Deine einfache Anleitung für das Handy!<br>
-<br>
-SeniorSmart ist die perfekte App für alle, die das Smartphone von Grund auf verstehen möchten. <br>Mit einfachen, verständlichen Schritt-für-Schritt-Tutorials lernst du, wie du Anrufe tätigst, Nachrichten schreibst, Apps herunterlädst und dein Handy im Alltag optimal nutzt.<br>
-Ganz ohne Stress – nur einfache Erklärungen und nützliche Tipps, die dir helfen, das Beste aus deinem Gerät herauszuholen.<br>
-<br>
-Features:
-<ul>
-    <li>
-        Einfache Anleitungen: Verständliche Tutorials für jede Funktion.
-    </li>
-    <li>
-        Interaktive Übungen: Lerne durch Übung und Wiederholung.
-    </li>
-    <li>
-        Praktische Tipps: Hole dir hilfreiche Tricks für den Alltag.
-    </li>
-    <li>
-        Kein Fachwissen nötig: Alles wird in einfachen Worten erklärt.
-    </li>
-</ul>   
-     </p>
-     </div>
-     
-     <div>
-         
-         
-         
-     <label for="search">Suchen:</label><br>
-     <input type="search" id="search" class="interactive" placeholder="Zum suchen hier Tippen...">
-</div>
-     <br>
-     
-     <div class="container">
-         <div class="container-title">
-             <h3>Nachrichten</h3>
-             <i class="fa-regular fa-square-caret-down fa-xl right toggle-icon" 
-   onClick="ToggleText('Text_Nachrichten')"
-   role="button" 
-   tabindex="0"
-   aria-label="Nachrichten-Details anzeigen">
-</i>
-             <h5>Verschicken und Empfangen</h5>
-         </div>
-         <div id="Text_Nachrichten" style="display: none;">
-             <p>Text</p>
-         </div>
-     </div>
-     <script>
-         const searchInput = document.getElementById('search');
-  const containerTitles = document.querySelectorAll('.container-title');
+        <hr />
+        <div>
+            <label for="search">Suchen:</label><br />
+            <input type="search" id="search" class="interactive" placeholder="Zum suchen hier Tippen..." />
+        </div>
+        <br />
 
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase();
+        <div class="container">
+            <div class="container-title" onClick="ToggleText('Text_Nachrichten')">
+                <h3>Nachrichten</h3>
+                <h5>Verschicken und Empfangen</h5>
+                <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                    Tippen zum Durchlesen
+                </a>
+            </div>
+            <div id="Text_Nachrichten" style="display: none">
+                <p>Text</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="container-title" onClick="ToggleText('Text_Anrufe')">
+                <h3>Anrufe</h3>
+                <h5>Beginnen und verwalten</h5>
+                <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                    Tippen zum Durchlesen
+                </a>
+            </div>
+            <div id="Text_Anrufe" style="display: none">
+                <p>Text</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="container-title" onClick="ToggleText('Text_usw')">
+                <h3>usw</h3>
+                <h5>Beginnen und verwalten</h5>
+                <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                    Tippen zum Durchlesen
+                </a>
+            </div>
+            <div id="Text_usw" style="display: none">
+                <p>Text</p>
+            </div>
+        </div>
+        
+        <script>
+            const searchInput = document.getElementById("search");
+            const containerTitles = document.querySelectorAll(".container-title");
 
-    containerTitles.forEach(el => {
-      // Textinhalt des Elements in Kleinbuchstaben
-      const text = el.textContent.toLowerCase();
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.toLowerCase();
 
-      // Treffer prüfen und ggf. hervorheben
-      if (text.includes(query) && query !== '') {
-        el.classList.add('highlight');
-      } else {
-        el.classList.remove('highlight');
-      }
-    });
-  });
-         
-         
-         function ToggleText(ID) {
-    const element = document.getElementById(ID);
-    const icon = event.target; // Das geklickte Icon
-    
-    if (element.style.display === 'block') {
-        element.style.display = 'none';
-        icon.classList.remove('rotated');
-    } else {
-        element.style.display = 'block';
-        icon.classList.add('rotated');
-    }
-}
-     </script>
+                containerTitles.forEach((el) => {
+                    // Textinhalt des Elements in Kleinbuchstaben
+                    const text = el.textContent.toLowerCase();
+
+                    // Treffer prüfen und ggf. hervorheben
+                    if (text.includes(query) && query !== "") {
+                        el.classList.add("highlight");
+                    } else {
+                        el.classList.remove("highlight");
+                    }
+                });
+            });
+
+            function ToggleText(ID) {
+                const element = document.getElementById(ID);
+                const icon = event.target; // Das geklickte Icon
+
+                if (element.style.display === "block") {
+                    element.style.display = "none";
+                    icon.classList.remove("rotated");
+                } else {
+                    element.style.display = "block";
+                    icon.classList.add("rotated");
+                }
+            }
+        </script>
     </body>
 </html>
