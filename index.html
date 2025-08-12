@@ -50,6 +50,17 @@
                 transition: background 0.2s;
             }
 
+            .interactive-special {
+                background: var(--primary-light);
+                color: white;
+                padding: 0.6rem 1.2rem;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+
             .interactive:hover {
                 background: var(--primary-dark);
             }
@@ -94,53 +105,76 @@
         </style>
     </head>
     <body>
-        <h1>SmartSenior</h1>
-        <hr />
-        <div>
-            <label for="search">Suchen:</label><br />
-            <input type="search" id="search" class="interactive" placeholder="Zum suchen hier Tippen..." />
-        </div>
-        <br />
+        <header style="line-height: 1; line-height: 1">
+            <h1>SmartSenior</h1>
+            <p>
+                Eine App umzuverstehen wie ein Smartphone funktioniert.<br />
+                Auf dem Smartphone, für das Smartphone.
+            </p>
+            <hr />
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
+                <label style="flex: 0 0 10%" for="search">Suchen</label>
+                <input
+                    style="flex: 1"
+                    type="search"
+                    id="search"
+                    class="interactive"
+                    placeholder="Zum suchen hier tippen..." />
+            </div>
 
-        <div class="container">
-            <div class="container-title" onClick="ToggleText('Text_Nachrichten')">
-                <h3>Nachrichten</h3>
-                <h5>Verschicken und Empfangen</h5>
-                <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
-                    Tippen zum Durchlesen
-                </a>
+            <br />
+        </header>
+        <main>
+            <div DevComment="Simples">
+                <hr />
+                <h2>Einfach</h2>
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_Nachrichten')">
+                        <h3>Nachrichten</h3>
+                        <h5>Verschicken und Empfangen</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_Nachrichten" style="display: none">
+                        <hr />
+                        <p>Text</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_Anrufe')">
+                        <h3>Anrufe</h3>
+                        <h5>Beginnen und verwalten</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_Anrufe" style="display: none">
+                        <hr />
+                        <p>Text</p>
+                    </div>
+                </div>
             </div>
-            <div id="Text_Nachrichten" style="display: none">
-                <p>Text</p>
+            <div DevComment="erweitertes">
+                <hr />
+                <h2>Schwieriger</h2>
+
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_usw')">
+                        <h3>usw</h3>
+                        <h5>Beginnen und verwalten</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_usw" style="display: none">
+                        <hr />
+                        <p>Text</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="container">
-            <div class="container-title" onClick="ToggleText('Text_Anrufe')">
-                <h3>Anrufe</h3>
-                <h5>Beginnen und verwalten</h5>
-                <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
-                    Tippen zum Durchlesen
-                </a>
-            </div>
-            <div id="Text_Anrufe" style="display: none">
-                <p>Text</p>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="container-title" onClick="ToggleText('Text_usw')">
-                <h3>usw</h3>
-                <h5>Beginnen und verwalten</h5>
-                <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
-                    Tippen zum Durchlesen
-                </a>
-            </div>
-            <div id="Text_usw" style="display: none">
-                <p>Text</p>
-            </div>
-        </div>
-        
+        </main>
         <script>
             const searchInput = document.getElementById("search");
             const containerTitles = document.querySelectorAll(".container-title");
