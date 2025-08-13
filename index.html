@@ -166,7 +166,7 @@
     <body>
         <header style="line-height: 1; line-height: 1">
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                <img style="max-width: 30%; max-height: 30%;" src="" alt="Logo"/>
+                <img style="max-width: 30%; max-height: 30%;" src="https://tse3.mm.bing.net/th/id/OIP.HkwFAU2NPzgpIiSwoamAWQHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo"/>
                 <h1>SmartSenior</h1>
             </div>
             <p>
@@ -264,62 +264,185 @@
                             aria-label="Container vorlesen">
                             Vorlesen lassen
                         </button>
-                        <p>
-                            Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen,
-                            spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten
-                            Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute
-                            verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn
-                            beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder
-                            gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die
-                            stählerne Acht um seine Handgelenke würde gleich zuschnappen? Er konnte die Aufforderung
-                            stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen
-                            Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden
-                            Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg
-                            lag. Er versuchte, sich in der Dunkelheit seinen Weg zu ertasten und erstarrte: Anscheinend
-                            gab es keinen anderen Ausweg aus diesem kleinen Hof als den Durchgang, durch den er gekommen
-                            war. Die Schritte wurden lauter und lauter, er sah eine dunkle Gestalt um die Ecke biegen.
-                            Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen Ausweg. War
-                            jetzt wirklich alles vorbei.
-                        </p>
+                        <p>Text</p>
                     </div>
                 </div>
-            </div>
-            <div DevComment="erweitertes">
-                <hr />
-                <h2>Schwieriger</h2>
 
                 <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_usw')">
-                        <h3>usw</h3>
-                        <h5>Beginnen und verwalten</h5>
+                    <div class="container-title" onClick="ToggleText('Text_Apps')">
+                        <h3><i class="fa-brands fa-app-store"></i> Apps</h3>
+                        <h5>Finden und Öffnen</h5>
                         <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
-                    <div id="Text_usw" style="display: none">
+                    <div id="Text_Apps" style="display: none">
                         <hr />
-                        <button class="voice-btn" onclick="readContainer('Text_usw')" aria-label="Container vorlesen">
+                        <button
+                            class="voice-btn"
+                            onclick="readContainer('Text_Apps')"
+                            aria-label="Container vorlesen">
                             Vorlesen lassen
                         </button>
-                        <p>
-                            Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen,
-                            spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten
-                            Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute
-                            verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn
-                            beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder
-                            gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die
-                            stählerne Acht um seine Handgelenke würde gleich zuschnappen? Er konnte die Aufforderung
-                            stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen
-                            Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden
-                            Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg
-                            lag. Er versuchte, sich in der Dunkelheit seinen Weg zu ertasten und erstarrte: Anscheinend
-                            gab es keinen anderen Ausweg aus diesem kleinen Hof als den Durchgang, durch den er gekommen
-                            war. Die Schritte wurden lauter und lauter, er sah eine dunkle Gestalt um die Ecke biegen.
-                            Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen Ausweg. War
-                            jetzt wirklich alles vorbei.
-                        </p>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Container vorlesen">
+                            Vorlesen Stoppen
+                        </button>
+                        <p>Um Apps zu finden wischen sie mit dem Bildschirm nach oben und dann tippen sie denn Namen der App in die suchleiste ein.<br>
+                            Um die App zu öffnen tippen sie auf die App drauf</p>
                     </div>
                 </div>
+                
+                
+            
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_wlan_mobiledaten')">
+                        <h3><i class="fa-solid fa-wifi"></i> WLAN und Mobile Daten</h3>
+                        <h5>Was ist der unterschied</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_wlan_mobiledaten" style="display: none">
+                        <hr />
+                        <button
+                            class="voice-btn"
+                            onclick="readContainer('Text_wlan_mobiledaten')"
+                            aria-label="Container vorlesen">
+                            Vorlesen lassen
+                        </button>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Container vorlesen">
+                            Vorlesen Stoppen
+                        </button>
+                        <p>Bitte achten Sie darauf, dass sie W-LAN verwenden.<br>
+                            W-LAN ist ein festes Netzwerk in dem Geräte zusammen laufen. Es gibt auch Mabile Daten.<br>
+                            Diese sind begrenzt und soll dafür sorgen, dass man unterwegs zurecht kommt</p>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_kontakte')">
+                        <h3><i class="fa-solid fa-address-book"></i> Kontakte</h3>
+                        <h5>Verwalten</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_kontakte" style="display: none">
+                        <hr />
+                        <button
+                            class="voice-btn"
+                            onclick="readContainer('Text_kontakte')"
+                            aria-label="Container vorlesen">
+                            Vorlesen lassen
+                        </button>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Container vorlesen">
+                            Vorlesen Stoppen
+                        </button>
+                        <h4>Kontakt hinzufügen</h4>
+                        <ol>
+                            <ul>
+                            Sie gehen auf die Telefon App.<br>
+                                In der App gehen sie auf das blaue Plus tippen und dort Namen und Telefonnummer ein und drücken auf sichern.
+                            </ul>
+                        </ol>
+                        <br>
+                        <h4>Kontakt entfernen</h4>
+                        <ol>
+                            <ul>
+                                Sie öffnen ihr Handy gehen in die Telefon App danach suchen sie denn Namen raus denn sie löschen wollen. Sie gehen auf denn Namen drauf und scrollen nach ganz unten und drücken auf Anrufer:in blockieren
+                            </ul>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_password')">
+                        <h3><i class="fa-solid fa-key"></i> Passwort</h3>
+                        <h5>Verwalten und verändern</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_password" style="display: none">
+                        <hr />
+                        <button
+                            class="voice-btn"
+                            onclick="readContainer('Text_password')"
+                            aria-label="Container vorlesen">
+                            Vorlesen lassen
+                        </button>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Container vorlesen">
+                            Vorlesen Stoppen
+                        </button>
+                        <p>Als erstes entsperren sie ihr iPhone und gehen in die Einstellungen. Dann gehen sie auf die Face ID und Code scrollen runter bis zu der Stellen wo, Code ändern,, dann geben sie ihren ihren aktuellen Code ein und dann geben sie ihren neuen Code ein zweites Mal zur Bestätigung ein</p>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_wlan')">
+                        <h3><i class="fa-solid fa-wifi"></i> WLAN Verbindung erstellen</h3>
+                        <h5></h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_wlan" style="display: none">
+                        <hr />
+                        <button
+                            class="voice-btn"
+                            onclick="readContainer('Text_wlan')"
+                            aria-label="Container vorlesen">
+                            Vorlesen lassen
+                        </button>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Container vorlesen">
+                            Vorlesen Stoppen
+                        </button>
+                        <p>Sie müssen ihr IPhone entsperren, dann gehen sie in die Einstellungen. Dort gehen sie auf wlan und gehen auf denn Namen ihres Euters und geben das Passwort des Wlanruters ein</p>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="container-title" onClick="ToggleText('Text_backups')">
+                        <h3><i class="fa-solid fa-cloud"></i> Backups erstellen</h3>
+                        <h5></h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                            Tippen zum Durchlesen
+                        </a>
+                    </div>
+                    <div id="Text_backups" style="display: none">
+                        <hr />
+                        <button
+                            class="voice-btn"
+                            onclick="readContainer('Text_backups')"
+                            aria-label="Container vorlesen">
+                            Vorlesen lassen
+                        </button>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Container vorlesen">
+                            Vorlesen Stoppen
+                        </button>
+                        <p>Sie öffnen ihr Handy. Gehen in die Einstellungen und geben in die suchleiste Backups ein und tippen auf Backups erstellen, dann warten sie auf die abgelodeten Daten</p>
+                    </div>
+                </div>
+                
+                
             </div>
         </main>
         <script>
