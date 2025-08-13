@@ -77,12 +77,12 @@
             }
 
             .container {
-                border: 1px solid #ddd; /* Weicher statt harter schwarzer Rahmen */
-                border-radius: 8px; /* Weniger Rundung */
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtiler Schatten statt inset */
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                 padding: 15px;
-                width: 90%; /* Vollbreite statt 90% */
-                margin-bottom: 15px; /* Abstand zwischen Containern */
+                width: 90%;
+                margin-bottom: 15px;
             }
 
             .container-title {
@@ -165,6 +165,46 @@
             .voice-btn:hover {
                 background: #15803d;
             }
+
+            .step-list {
+                counter-reset: step-counter;
+            }
+
+            .step-list li {
+                counter-increment: step-counter;
+                margin-bottom: 15px;
+                position: relative;
+                padding-left: 40px;
+            }
+
+            .step-list li::before {
+                content: counter(step-counter);
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: var(--primary);
+                color: white;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            .tip-box {
+                background: #fff3cd;
+                border: 1px solid #ffeaa7;
+                border-radius: 6px;
+                padding: 12px;
+                margin: 10px 0;
+            }
+
+            .tip-box strong {
+                color: #856404;
+            }
         </style>
     </head>
     <body>
@@ -177,7 +217,7 @@
                 <h1>SmartSenior</h1>
             </div>
             <p>
-                Eine App umzuverstehen wie ein Smartphone funktioniert.<br />
+                Eine App, um zu verstehen, wie ein Smartphone funktioniert.<br />
                 Auf dem Smartphone, für das Smartphone.
             </p>
             <br />
@@ -189,23 +229,25 @@
                     type="search"
                     id="search"
                     class="interactive"
-                    placeholder="Zum suchen hier tippen..."
+                    placeholder="Zum Suchen hier tippen..."
                     list="suchbegriffe" />
                 <datalist id="suchbegriffe">
                     <option value="Nachrichten"></option>
                     <option value="Anrufe"></option>
-                    <option value="usw"></option>
+                    <option value="Apps"></option>
+                    <option value="WLAN"></option>
+                    <option value="Kontakte"></option>
                 </datalist>
             </div>
         </header>
         <main>
             <div DevComment="easy">
                 <hr />
-                <h2>Einfach</h2>
+                <h2>Grundlagen</h2>
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_Nachrichten')">
                         <h3><i class="fa-solid fa-comments"></i> Nachrichten</h3>
-                        <h5>Verschicken und Empfangen.<br />Ob Emails, SMS oder WhatsApp Nachrichten</h5>
+                        <h5>Verschicken und empfangen.<br />E-Mails, SMS oder WhatsApp-Nachrichten</h5>
                         <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
@@ -221,46 +263,49 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
+                        
                         <p>
-                            Für Nachrichten gibt es verschiedene Auswahlmöglichkeiten.<br />
-                            Für die meisten sind die Schritte gleich.
+                            <strong>Nachrichten verschicken - so geht's:</strong><br>
+                            Es gibt verschiedene Apps für Nachrichten (WhatsApp, SMS, E-Mail). Die grundlegenden Schritte sind bei allen ähnlich.
                         </p>
-                        <ul>
+
+                        <ol class="step-list">
                             <li>
-                                Zuerst müssen sie den Finger von oben über den Bildschirm ziehen. Es öffnet sich das
-                                Suchmenü.<br />
+                                <strong>App finden:</strong> Wischen Sie mit dem Finger von oben nach unten über den Bildschirm. Es öffnet sich die Suche.
+                                <br>
                                 <img
-                                    style="max-width: 90%; max-height: auto"
+                                    style="max-width: 90%; max-height: auto; margin-top: 8px;"
                                     src="https://www.ubackup.com/de/phone/screenshot/others/iphone/search-apps-on-iphone.png" />
                             </li>
-                            <br />
+                            
                             <li>
-                                Nun sollte sich auf dem unteren Teil des Bildschirms eine Tastatur befinden, mit der sie
-                                nun "WhatsApp" oder "Nachrichten" eingeben. Bitte berühren Sie dann die ensprechende App
-                                in der oberen linken Ecke.
+                                <strong>App öffnen:</strong> Tippen Sie "WhatsApp" oder "Nachrichten" in die Suchleiste ein. Berühren Sie dann die entsprechende App, wenn sie erscheint.
                             </li>
-                            <br />
+                            
                             <li>
-                                Als nächstes suchen sie den gewünschten Kontakt, tippen auf die Konversation, und
-                                berühren jetzt den Balken ganz unten.<br />
+                                <strong>Kontakt auswählen:</strong> Suchen Sie den gewünschten Kontakt und tippen Sie auf die Unterhaltung. Tippen Sie dann auf das Textfeld ganz unten.
+                                <br>
                                 <img
-                                    style="max-width: 90%; max-heigth: auto"
+                                    style="max-width: 90%; max-height: auto; margin-top: 8px;"
                                     src="https://www.inside-digital.de/img/whatsapp-iphone-chats.jpg" />
                             </li>
-                            <br />
+                            
                             <li>
-                                Durch die nun erschienene Tastatur können sie jetzt ihre Nachricht eingeben und auf dem
-                                Pfeil auf der rechten Seite absenden.<br />
+                                <strong>Nachricht schreiben:</strong> Tippen Sie Ihre Nachricht ein und drücken Sie auf den Pfeil rechts, um sie zu versenden.
+                                <br>
                                 <img
-                                    style="max-width: 90%; max-height: auto"
+                                    style="max-width: 90%; max-height: auto; margin-top: 8px;"
                                     src="https://discussions.apple.com/content/attachment/29a57433-e959-4fdf-aec7-7cc21026bf82" />
                             </li>
-                        </ul>
-                        <br />
-                        Sollte ihr Kontakt Ihnen antworten sind sie sicher, dass die Nachricht angekommen ist.<br />
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Tipp:</strong> Wenn Ihr Kontakt antwortet, wissen Sie, dass die Nachricht angekommen ist.
+                        </div>
+                        
                         <button class="interactive" onClick="ToggleText('Text_Nachrichten')">Schließen</button>
                     </div>
                 </div>
@@ -268,8 +313,8 @@
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_Anrufe')">
                         <h3><i class="fa-solid fa-phone-volume"></i> Anrufe</h3>
-                        <h5>Beginnen und verwalten</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h5>Anrufen und Anrufe annehmen</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Anruf-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -281,15 +326,45 @@
                             aria-label="Container vorlesen">
                             Vorlesen lassen
                         </button>
-                        <p>Text</p>
+                        <button
+                            class="voice-btn"
+                            onclick="window.speechSynthesis.cancel();"
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
+                        </button>
+                        
+                        <p><strong>Anrufe tätigen:</strong></p>
+                        <ol class="step-list">
+                            <li>Öffnen Sie die "Telefon"-App (grünes Symbol mit Telefonhörer)</li>
+                            <li>Wählen Sie eine Option:
+                                <ul>
+                                    <li><strong>Kontakt anrufen:</strong> Tippen Sie auf "Kontakte" und wählen Sie eine Person aus</li>
+                                    <li><strong>Nummer eingeben:</strong> Tippen Sie auf "Ziffernblock" und geben Sie die Telefonnummer ein</li>
+                                </ul>
+                            </li>
+                            <li>Tippen Sie auf den grünen Anruf-Button</li>
+                        </ol>
+
+                        <p><strong>Anrufe annehmen:</strong></p>
+                        <ol class="step-list">
+                            <li>Wenn das Telefon klingelt, erscheint ein Bildschirm mit dem Namen oder der Nummer</li>
+                            <li>Schieben Sie den grünen Button nach rechts, um anzunehmen</li>
+                            <li>Schieben Sie den roten Button nach links, um abzulehnen</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Tipp:</strong> Während eines Anrufs können Sie auf "Stumm" tippen, um Ihr Mikrofon auszuschalten, oder auf "Lautsprecher" für Freisprechen.
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_Anrufe')">Schließen</button>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_Apps')">
                         <h3><i class="fa-brands fa-app-store"></i> Apps</h3>
-                        <h5>Finden und Öffnen</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h5>Finden und öffnen</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="App-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -301,22 +376,39 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
-                        <p>
-                            Um Apps zu finden wischen sie mit dem Bildschirm nach oben und dann tippen sie denn Namen
-                            der App in die suchleiste ein.<br />
-                            Um die App zu öffnen tippen sie auf die App drauf
-                        </p>
+                        
+                        <p><strong>Apps finden und öffnen:</strong></p>
+                        
+                        <h4>Methode 1: Über die Suche</h4>
+                        <ol class="step-list">
+                            <li>Wischen Sie mit dem Finger von oben nach unten über den Bildschirm</li>
+                            <li>Geben Sie den Namen der App in die Suchleiste ein (z.B. "Wetter", "Kamera")</li>
+                            <li>Tippen Sie auf die App, um sie zu öffnen</li>
+                        </ol>
+
+                        <h4>Methode 2: Auf dem Homebildschirm</h4>
+                        <ol class="step-list">
+                            <li>Schauen Sie auf Ihren Homebildschirm (Hauptbildschirm)</li>
+                            <li>Wischen Sie nach links oder rechts, um weitere App-Seiten zu sehen</li>
+                            <li>Tippen Sie auf die gewünschte App</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Tipp:</strong> Die Suchfunktion ist oft der schnellste Weg, eine App zu finden, besonders wenn Sie viele Apps haben.
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_Apps')">Schließen</button>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_wlan_mobiledaten')">
-                        <h3><i class="fa-solid fa-wifi"></i> WLAN und Mobile Daten</h3>
-                        <h5>Was ist der unterschied</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h3><i class="fa-solid fa-wifi"></i> WLAN und mobile Daten</h3>
+                        <h5>Was ist der Unterschied?</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="WLAN-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -331,22 +423,39 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
-                        <p>
-                            Bitte achten Sie darauf, dass sie W-LAN verwenden.<br />
-                            W-LAN ist ein festes Netzwerk in dem Geräte zusammen laufen. Es gibt auch Mabile Daten.<br />
-                            Diese sind begrenzt und soll dafür sorgen, dass man unterwegs zurecht kommt
-                        </p>
+                        
+                        <p><strong>Der Unterschied zwischen WLAN und mobilen Daten:</strong></p>
+
+                        <h4><i class="fa-solid fa-wifi"></i> WLAN</h4>
+                        <ul>
+                            <li><strong>Was ist das?</strong> Ein drahtloses Netzwerk zu Hause, im Büro oder an öffentlichen Orten</li>
+                            <li><strong>Vorteil:</strong> Meist unbegrenzte Internetnutzung ohne zusätzliche Kosten</li>
+                            <li><strong>Nachteil:</strong> Nur in der Nähe des WLAN-Routers verfügbar</li>
+                        </ul>
+
+                        <h4><i class="fa-solid fa-signal"></i> Mobile Daten</h4>
+                        <ul>
+                            <li><strong>Was ist das?</strong> Internet über das Mobilfunknetz (überall verfügbar)</li>
+                            <li><strong>Vorteil:</strong> Funktioniert unterwegs, auch ohne WLAN</li>
+                            <li><strong>Nachteil:</strong> Oft begrenzte Datenmenge pro Monat</li>
+                        </ul>
+
+                        <div class="tip-box">
+                            <strong>Wichtiger Tipp:</strong> Nutzen Sie zu Hause immer WLAN, um Ihre mobilen Daten zu schonen. Mobile Daten sollten nur unterwegs verwendet werden, wenn kein WLAN verfügbar ist.
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_wlan_mobiledaten')">Schließen</button>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_kontakte')">
                         <h3><i class="fa-solid fa-address-book"></i> Kontakte</h3>
-                        <h5>Verwalten</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h5>Hinzufügen und verwalten</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Kontakt-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -361,34 +470,49 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
+                        
                         <h4>Kontakt hinzufügen</h4>
-                        <ol>
-                            <ul>
-                                Sie gehen auf die Telefon App.<br />
-                                In der App gehen sie auf das blaue Plus tippen und dort Namen und Telefonnummer ein und
-                                drücken auf sichern.
-                            </ul>
+                        <ol class="step-list">
+                            <li>Öffnen Sie die "Telefon"-App</li>
+                            <li>Tippen Sie unten auf "Kontakte"</li>
+                            <li>Tippen Sie auf das blaue Plus-Zeichen (+) oben rechts</li>
+                            <li>Geben Sie den Namen und die Telefonnummer ein</li>
+                            <li>Tippen Sie oben rechts auf "Sichern"</li>
                         </ol>
-                        <br />
-                        <h4>Kontakt entfernen</h4>
-                        <ol>
-                            <ul>
-                                Sie öffnen ihr Handy gehen in die Telefon App danach suchen sie denn Namen raus denn sie
-                                löschen wollen. Sie gehen auf denn Namen drauf und scrollen nach ganz unten und drücken
-                                auf Anrufer:in blockieren
-                            </ul>
+
+                        <h4>Kontakt bearbeiten</h4>
+                        <ol class="step-list">
+                            <li>Öffnen Sie die "Telefon"-App und gehen zu "Kontakte"</li>
+                            <li>Suchen Sie den gewünschten Kontakt</li>
+                            <li>Tippen Sie auf den Namen</li>
+                            <li>Tippen Sie oben rechts auf "Bearbeiten"</li>
+                            <li>Nehmen Sie Ihre Änderungen vor und tippen auf "Fertig"</li>
                         </ol>
+
+                        <h4>Kontakt blockieren</h4>
+                        <ol class="step-list">
+                            <li>Öffnen Sie den Kontakt, den Sie blockieren möchten</li>
+                            <li>Scrollen Sie nach unten</li>
+                            <li>Tippen Sie auf "Kontakt blockieren" (rot)</li>
+                            <li>Bestätigen Sie mit "Kontakt blockieren"</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Tipp:</strong> Blockierte Kontakte können Sie nicht mehr anrufen oder Ihnen Nachrichten schicken. Sie können die Blockierung in den Einstellungen unter "Telefon" → "Blockiert" wieder aufheben.
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_kontakte')">Schließen</button>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_password')">
                         <h3><i class="fa-solid fa-key"></i> Passwort</h3>
-                        <h5>Verwalten und verändern</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h5>Ändern und verwalten</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Passwort-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -403,23 +527,36 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
-                        <p>
-                            Als erstes entsperren sie ihr iPhone und gehen in die Einstellungen. Dann gehen sie auf die
-                            Face ID und Code scrollen runter bis zu der Stellen wo, Code ändern,, dann geben sie ihren
-                            ihren aktuellen Code ein und dann geben sie ihren neuen Code ein zweites Mal zur Bestätigung
-                            ein
-                        </p>
+                        
+                        <p><strong>Bildschirmsperre-Code ändern:</strong></p>
+                        
+                        <ol class="step-list">
+                            <li>Entsperren Sie Ihr iPhone</li>
+                            <li>Öffnen Sie die "Einstellungen"-App</li>
+                            <li>Tippen Sie auf "Face ID & Code" (oder "Touch ID & Code")</li>
+                            <li>Geben Sie Ihren aktuellen Code ein</li>
+                            <li>Scrollen Sie nach unten und tippen auf "Code ändern"</li>
+                            <li>Geben Sie Ihren alten Code ein</li>
+                            <li>Geben Sie Ihren neuen Code ein</li>
+                            <li>Geben Sie den neuen Code zur Bestätigung noch einmal ein</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Sicherheitstipp:</strong> Verwenden Sie einen Code, den Sie sich gut merken können, aber den andere nicht erraten können. Vermeiden Sie einfache Zahlenfolgen wie "1234" oder Ihr Geburtsjahr.
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_password')">Schließen</button>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_wlan')">
-                        <h3><i class="fa-solid fa-wifi"></i> WLAN Verbindung erstellen</h3>
-                        <h5></h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h3><i class="fa-solid fa-wifi"></i> WLAN-Verbindung erstellen</h3>
+                        <h5>Mit dem Internet zu Hause verbinden</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="WLAN-Verbindung-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -431,21 +568,36 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
-                        <p>
-                            Sie müssen ihr IPhone entsperren, dann gehen sie in die Einstellungen. Dort gehen sie auf
-                            wlan und gehen auf denn Namen ihres Euters und geben das Passwort des Wlanruters ein
-                        </p>
+                        
+                        <p><strong>WLAN einrichten - Schritt für Schritt:</strong></p>
+                        
+                        <ol class="step-list">
+                            <li>Entsperren Sie Ihr iPhone</li>
+                            <li>Öffnen Sie die "Einstellungen"-App</li>
+                            <li>Tippen Sie auf "WLAN" (ganz oben)</li>
+                            <li>Stellen Sie sicher, dass WLAN aktiviert ist (grüner Schalter)</li>
+                            <li>Suchen Sie in der Liste den Namen Ihres Heimnetzwerks</li>
+                            <li>Tippen Sie auf den Namen Ihres Netzwerks</li>
+                            <li>Geben Sie das WLAN-Passwort ein</li>
+                            <li>Tippen Sie auf "Verbinden"</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Wo finde ich mein WLAN-Passwort?</strong> Das Passwort steht meist auf einem Aufkleber auf Ihrem Router oder wurde Ihnen von Ihrem Internetanbieter mitgeteilt. Oft steht dort "WLAN-Schlüssel" oder "WiFi-Password".
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_wlan')">Schließen</button>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_backups')">
                         <h3><i class="fa-solid fa-cloud"></i> Backups erstellen</h3>
-                        <h5></h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
+                        <h5>Ihre Daten sichern</h5>
+                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Backup-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
                     </div>
@@ -460,13 +612,29 @@
                         <button
                             class="voice-btn"
                             onclick="window.speechSynthesis.cancel();"
-                            aria-label="Container vorlesen">
-                            Vorlesen Stoppen
+                            aria-label="Vorlesen stoppen">
+                            Vorlesen stoppen
                         </button>
-                        <p>
-                            Sie öffnen ihr Handy. Gehen in die Einstellungen und geben in die suchleiste Backups ein und
-                            tippen auf Backups erstellen, dann warten sie auf die abgelodeten Daten
-                        </p>
+                        
+                        <p><strong>Was ist ein Backup?</strong><br>
+                        Ein Backup ist eine Sicherheitskopie all Ihrer wichtigen Daten (Fotos, Kontakte, Nachrichten). Falls Ihr Handy kaputt geht oder verloren geht, können Sie alles wiederherstellen.</p>
+                        
+                        <p><strong>Backup erstellen:</strong></p>
+                        <ol class="step-list">
+                            <li>Öffnen Sie die "Einstellungen"-App</li>
+                            <li>Tippen Sie ganz oben auf Ihren Namen</li>
+                            <li>Tippen Sie auf "iCloud"</li>
+                            <li>Tippen Sie auf "iCloud-Backup"</li>
+                            <li>Stellen Sie sicher, dass "iCloud-Backup" aktiviert ist (grüner Schalter)</li>
+                            <li>Tippen Sie auf "Jetzt Backup erstellen"</li>
+                            <li>Warten Sie, bis das Backup abgeschlossen ist (kann einige Minuten dauern)</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Wichtig:</strong> Für Backups benötigen Sie eine WLAN-Verbindung und ausreichend iCloud-Speicherplatz. Das Backup läuft automatisch, wenn Ihr Handy geladen wird und mit WLAN verbunden ist.
+                        </div>
+                        
+                        <button class="interactive" onClick="ToggleText('Text_backups')">Schließen</button>
                     </div>
                 </div>
             </div>
@@ -534,7 +702,7 @@
 
                     speechSynthesis.speak(utterance);
                 } else {
-                    alert("Ihr Smartphone unterstützt die Vorlese-funktion leider nicht.");
+                    alert("Ihr Smartphone unterstützt die Vorlese-Funktion leider nicht.");
                 }
             }
 
