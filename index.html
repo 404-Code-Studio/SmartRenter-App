@@ -205,6 +205,10 @@
             .tip-box strong {
                 color: #856404;
             }
+            
+            video {
+                border-radius: 15px;
+            }
         </style>
     </head>
     <body>
@@ -239,6 +243,12 @@
                     <option value="Kontakte"></option>
                 </datalist>
             </div>
+                <div id="EasterEgg" style="display: none;">
+                    <br>
+                    <p>We like to Party!</p>
+                    <img src="serafino.png" alt="Serafino"/>
+                    <img src="marian.png" alt="Marian"/>
+                </div>
         </header>
         <main>
             <div DevComment="easy">
@@ -266,9 +276,12 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
-                        <video autoplay controls>
-                            <source src="nachrichten_schreiben.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
                         </video>
                         <p>
                             <strong>Nachrichten verschicken - so geht's:</strong><br />
@@ -341,6 +354,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <p><strong>Anrufe tätigen:</strong></p>
                         <ol class="step-list">
@@ -396,6 +416,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <p><strong>Apps finden und öffnen:</strong></p>
 
@@ -444,6 +471,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <p><strong>Der Unterschied zwischen WLAN und mobilen Daten:</strong></p>
 
@@ -495,6 +529,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <h4>Kontakt hinzufügen</h4>
                         <ol class="step-list">
@@ -554,6 +595,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <p><strong>Bildschirmsperre-Code ändern:</strong></p>
 
@@ -597,6 +645,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <p><strong>WLAN einrichten - Schritt für Schritt:</strong></p>
 
@@ -643,6 +698,13 @@
                             aria-label="Vorlesen stoppen">
                             Vorlesen stoppen
                         </button>
+                        <br>
+                        <br>
+                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
+                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
+" type="video/mp4" />
+                            Dein Smartphone kann das Video nicht anzeigen.
+                        </video>
 
                         <p>
                             <strong>Was ist ein Backup?</strong><br />
@@ -674,90 +736,101 @@
             </div>
         </main>
         <script>
-            const searchInput = document.getElementById("search");
-            const containerTitles = document.querySelectorAll(".container-title");
+    const searchInput = document.getElementById("search");
+    const containerTitles = document.querySelectorAll(".container-title");
+    let colorLoopActive = false;
+    let colorLoopInterval = null;
 
-            searchInput.addEventListener("input", () => {
-                const query = searchInput.value.toLowerCase();
-
-                containerTitles.forEach((el) => {
-                    // Textinhalt des Elements in Kleinbuchstaben
-                    const text = el.textContent.toLowerCase();
-
-                    // Treffer prüfen und ggf. hervorheben
-                    if (text.includes(query) && query !== "") {
-                        el.classList.add("highlight");
-                    } else {
-                        el.classList.remove("highlight");
-                    }
-                });
-            });
-
-            function ToggleText(ID) {
-                const element = document.getElementById(ID);
-                const container = event.target.closest(".container");
-                const icon = container.querySelector(".toggle-icon");
-
-                if (element.style.display === "block") {
-                    element.style.display = "none";
-                    icon.classList.remove("rotated");
-                    container.classList.remove("expanded");
-                    icon.textContent = "Tippen zum Durchlesen";
-                } else {
-                    element.style.display = "block";
-                    icon.classList.add("rotated");
-                    container.classList.add("expanded");
-                    icon.textContent = "Zuklappen";
-                }
-            }
-
-            function readContainer(containerID) {
-                if ("speechSynthesis" in window) {
-                    speechSynthesis.cancel();
-
-                    const container = document.getElementById(containerID);
-                    const text = container.textContent.trim();
-
-                    const utterance = new SpeechSynthesisUtterance(text);
-
-                    // Deutsche Stimme falls verfügbar
-                    const voices = speechSynthesis.getVoices();
-                    const germanVoice = voices.find((voice) => voice.lang.includes("de"));
-                    if (germanVoice) {
-                        utterance.voice = germanVoice;
-                    } else {
-                        utterance.voice = germanVoice;
-                        utterance.lang = "de-DE";
-                    }
-
-                    utterance.rate = 0.9;
-                    utterance.pitch = 1.0;
-                    utterance.volume = 1.4;
-
-                    speechSynthesis.speak(utterance);
-                } else {
-                    alert("Ihr Smartphone unterstützt die Vorlese-Funktion leider nicht.");
-                }
-            }
-
-            function urlHasRgbParam() {
-                return new URLSearchParams(window.location.search).has("rgb");
-            }
-
-            function startColorLoop() {
-                const colors = ["red", "orange", "yellow", "green", "cyan", "blue", "indigo", "violet", "pink"];
-                let index = 0;
-
-                setInterval(() => {
-                    const currentColor = colors[index % colors.length];
-                    document.documentElement.style.setProperty("--primary", currentColor);
-                    index++;
-                }, 500); // alle 500ms Farbe ändern
-            }
-
-            if (urlHasRgbParam()) {
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase();
+        const originalQuery = searchInput.value; // Original für exakte Easter Egg Prüfung
+        
+        // Easter Egg Prüfung - nur bei exakter Eingabe "EasterEgg"
+        if (originalQuery === "EasterEgg") {
+            document.getElementById("EasterEgg").style.display = "block";
+            if (!colorLoopActive) {
                 startColorLoop();
+                colorLoopActive = true;
             }
-        </script>
+        } else {
+            document.getElementById("EasterEgg").style.display = "none";
+            // RGB Modus stoppen wenn nicht "EasterEgg"
+            if (colorLoopActive) {
+                stopColorLoop();
+                colorLoopActive = false;
+            }
+        }
+        
+        // Normale Suchfunktion
+        containerTitles.forEach((el) => {
+            const text = el.textContent.toLowerCase();
+            if (text.includes(query) && query !== "" && originalQuery !== "EasterEgg") {
+                el.classList.add("highlight");
+            } else {
+                el.classList.remove("highlight");
+            }
+        });
+    });
+
+    function ToggleText(ID) {
+        const element = document.getElementById(ID);
+        const container = event.target.closest(".container");
+        const icon = container.querySelector(".toggle-icon");
+        if (element.style.display === "block") {
+            element.style.display = "none";
+            icon.classList.remove("rotated");
+            container.classList.remove("expanded");
+            icon.textContent = "Tippen zum Durchlesen";
+        } else {
+            element.style.display = "block";
+            icon.classList.add("rotated");
+            container.classList.add("expanded");
+            icon.textContent = "Zuklappen";
+        }
+    }
+
+    function readContainer(containerID) {
+        if ("speechSynthesis" in window) {
+            speechSynthesis.cancel();
+            const container = document.getElementById(containerID);
+            const text = container.textContent.trim();
+            const utterance = new SpeechSynthesisUtterance(text);
+            // Deutsche Stimme falls verfügbar
+            const voices = speechSynthesis.getVoices();
+            const germanVoice = voices.find((voice) => voice.lang.includes("de"));
+            if (germanVoice) {
+                utterance.voice = germanVoice;
+            } else {
+                utterance.voice = germanVoice;
+                utterance.lang = "de-DE";
+            }
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.4;
+            speechSynthesis.speak(utterance);
+        } else {
+            alert("Ihr Smartphone unterstützt die Vorlese-Funktion leider nicht.");
+        }
+    }
+
+    function startColorLoop() {
+        const colors = ["red", "orange", "yellow", "green", "cyan", "blue", "indigo", "violet", "pink"];
+        let index = 0;
+        colorLoopInterval = setInterval(() => {
+            const currentColor = colors[index % colors.length];
+            document.documentElement.style.setProperty("--primary", currentColor);
+            index++;
+        }, 500); // alle 500ms Farbe ändern
+    }
+
+    function stopColorLoop() {
+        if (colorLoopInterval) {
+            clearInterval(colorLoopInterval);
+            colorLoopInterval = null;
+        }
+        // Zurück zur ursprünglichen Farbe
+        document.documentElement.style.removeProperty("--primary");
+    }
+</script>
     </body>
 </html>
