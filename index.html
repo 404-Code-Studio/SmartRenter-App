@@ -12,10 +12,10 @@
         <title>SmartSenior App</title>
         <style>
             :root {
-                --bg: linear-gradient(140deg, #ffffff 0%, #f1f1f1 100%);
+                --bg: linear-gradient(140deg, #e9e9e9 0%, #f1f1f1 100%);
                 --text: #111111;
-                --primary: #00b7c2;
-                --primary-dark: #0096a0;
+                --primary: #000bb9;
+                --primary-dark: #000889;
                 --primary-light: #e6f8f9;
                 --success: #16a34a;
                 --warning: #f59e0b;
@@ -135,6 +135,10 @@
                 box-sizing: border-box;
             }
 
+            #search::placeholder {
+                color: var(--primary-light);
+            }
+
             #search:focus {
                 outline: 3px solid var(--primary);
                 border-color: var(--primary);
@@ -166,30 +170,32 @@
     <body>
         <header style="line-height: 1; line-height: 1">
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                <img style="max-width: 30%; max-height: 30%;" src="https://tse3.mm.bing.net/th/id/OIP.HkwFAU2NPzgpIiSwoamAWQHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo"/>
+                <img
+                    style="max-width: 30%; max-height: auto; border-radius: 15%; filter: invert(100%)"
+                    src="https://videos.openai.com/vg-assets/assets%2Ftask_01k2hbm5hqej8aja8bg8gp1nrf%2F1755076819_img_1.webp?st=2025-08-13T07%3A45%3A06Z&se=2025-08-19T08%3A45%3A06Z&sks=b&skt=2025-08-13T07%3A45%3A06Z&ske=2025-08-19T08%3A45%3A06Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=nyg1x%2Bdm7uOCxRZu%2B7RkbNW9JISlklc%2FTecIb0hIhuM%3D&az=oaivgprodscus"
+                    alt="Logo" />
                 <h1>SmartSenior</h1>
             </div>
             <p>
                 Eine App umzuverstehen wie ein Smartphone funktioniert.<br />
                 Auf dem Smartphone, für das Smartphone.
             </p>
-            <br>
+            <br />
             <hr />
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
                 <label style="flex: 0 0 10%" for="search">Suchen</label>
                 <input
-                    style="flex: 1"
+                    style="flex: 1; color: white"
                     type="search"
                     id="search"
                     class="interactive"
                     placeholder="Zum suchen hier tippen..."
-                    list="suchbegriffe"/>
-                    <datalist id="suchbegriffe">
-                        <option value="Nachrichten">
-                        <option value="Anrufe">
-                        <option value="usw">
-                    </datalist>
-            
+                    list="suchbegriffe" />
+                <datalist id="suchbegriffe">
+                    <option value="Nachrichten"></option>
+                    <option value="Anrufe"></option>
+                    <option value="usw"></option>
+                </datalist>
             </div>
         </header>
         <main>
@@ -199,7 +205,7 @@
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_Nachrichten')">
                         <h3><i class="fa-solid fa-comments"></i> Nachrichten</h3>
-                        <h5>Verschicken und Empfangen.<br>Ob Emails, SMS oder WhatsApp Nachrichten</h5>
+                        <h5>Verschicken und Empfangen.<br />Ob Emails, SMS oder WhatsApp Nachrichten</h5>
                         <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
                             Tippen zum Durchlesen
                         </a>
@@ -219,32 +225,43 @@
                             Vorlesen Stoppen
                         </button>
                         <p>
-                            Für Nachrichten gibt es verschiedene Auswahlmöglichkeiten.<br>
+                            Für Nachrichten gibt es verschiedene Auswahlmöglichkeiten.<br />
                             Für die meisten sind die Schritte gleich.
-                        </p>    
-                            <ul>
-                                <li>
-                            Zuerst müssen sie den Finger von oben über den Bildschirm ziehen. Es öffnet sich das Suchmenü.<br>
-                            <img style="max-width: 90%; max-height: auto;" src="https://www.ubackup.com/de/phone/screenshot/others/iphone/search-apps-on-iphone.png">
-                                </li>
-                                <br>
-                                <li>
-                            Nun sollte sich auf dem unteren Teil des Bildschirms eine Tastatur befinden, mit der sie nun "WhatsApp" oder "Nachrichten" eingeben. Bitte berühren Sie dann die ensprechende App in der oberen linken Ecke.
-                            </li>
-                            <br>
+                        </p>
+                        <ul>
                             <li>
-                            Als nächstes suchen sie den gewünschten Kontakt, tippen auf die Konversation, und berühren jetzt den Balken ganz unten.<br>
-                            <img style="max-width: 90%; max-heigth: auto;" src="https://www.inside-digital.de/img/whatsapp-iphone-chats.jpg"/>
+                                Zuerst müssen sie den Finger von oben über den Bildschirm ziehen. Es öffnet sich das
+                                Suchmenü.<br />
+                                <img
+                                    style="max-width: 90%; max-height: auto"
+                                    src="https://www.ubackup.com/de/phone/screenshot/others/iphone/search-apps-on-iphone.png" />
                             </li>
-                            <br>
+                            <br />
                             <li>
-                            Durch die nun erschienene Tastatur können sie jetzt ihre Nachricht eingeben und auf dem Pfeil auf der rechten Seite absenden.<br>
-                            <img style="max-width: 90%; max-height: auto;" src="https://discussions.apple.com/content/attachment/29a57433-e959-4fdf-aec7-7cc21026bf82"/>
+                                Nun sollte sich auf dem unteren Teil des Bildschirms eine Tastatur befinden, mit der sie
+                                nun "WhatsApp" oder "Nachrichten" eingeben. Bitte berühren Sie dann die ensprechende App
+                                in der oberen linken Ecke.
                             </li>
-                            </ul>
-                            <br>
-                            Sollte ihr Kontakt Ihnen antworten sind sie sicher, dass die Nachricht angekommen ist.<br>
-                            <button class="interactive" onClick="ToggleText('Text_Nachrichten')">Schließen</button>
+                            <br />
+                            <li>
+                                Als nächstes suchen sie den gewünschten Kontakt, tippen auf die Konversation, und
+                                berühren jetzt den Balken ganz unten.<br />
+                                <img
+                                    style="max-width: 90%; max-heigth: auto"
+                                    src="https://www.inside-digital.de/img/whatsapp-iphone-chats.jpg" />
+                            </li>
+                            <br />
+                            <li>
+                                Durch die nun erschienene Tastatur können sie jetzt ihre Nachricht eingeben und auf dem
+                                Pfeil auf der rechten Seite absenden.<br />
+                                <img
+                                    style="max-width: 90%; max-height: auto"
+                                    src="https://discussions.apple.com/content/attachment/29a57433-e959-4fdf-aec7-7cc21026bf82" />
+                            </li>
+                        </ul>
+                        <br />
+                        Sollte ihr Kontakt Ihnen antworten sind sie sicher, dass die Nachricht angekommen ist.<br />
+                        <button class="interactive" onClick="ToggleText('Text_Nachrichten')">Schließen</button>
                     </div>
                 </div>
 
@@ -278,10 +295,7 @@
                     </div>
                     <div id="Text_Apps" style="display: none">
                         <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_Apps')"
-                            aria-label="Container vorlesen">
+                        <button class="voice-btn" onclick="readContainer('Text_Apps')" aria-label="Container vorlesen">
                             Vorlesen lassen
                         </button>
                         <button
@@ -290,13 +304,14 @@
                             aria-label="Container vorlesen">
                             Vorlesen Stoppen
                         </button>
-                        <p>Um Apps zu finden wischen sie mit dem Bildschirm nach oben und dann tippen sie denn Namen der App in die suchleiste ein.<br>
-                            Um die App zu öffnen tippen sie auf die App drauf</p>
+                        <p>
+                            Um Apps zu finden wischen sie mit dem Bildschirm nach oben und dann tippen sie denn Namen
+                            der App in die suchleiste ein.<br />
+                            Um die App zu öffnen tippen sie auf die App drauf
+                        </p>
                     </div>
                 </div>
-                
-                
-            
+
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_wlan_mobiledaten')">
                         <h3><i class="fa-solid fa-wifi"></i> WLAN und Mobile Daten</h3>
@@ -319,12 +334,14 @@
                             aria-label="Container vorlesen">
                             Vorlesen Stoppen
                         </button>
-                        <p>Bitte achten Sie darauf, dass sie W-LAN verwenden.<br>
-                            W-LAN ist ein festes Netzwerk in dem Geräte zusammen laufen. Es gibt auch Mabile Daten.<br>
-                            Diese sind begrenzt und soll dafür sorgen, dass man unterwegs zurecht kommt</p>
+                        <p>
+                            Bitte achten Sie darauf, dass sie W-LAN verwenden.<br />
+                            W-LAN ist ein festes Netzwerk in dem Geräte zusammen laufen. Es gibt auch Mabile Daten.<br />
+                            Diese sind begrenzt und soll dafür sorgen, dass man unterwegs zurecht kommt
+                        </p>
                     </div>
                 </div>
-                
+
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_kontakte')">
                         <h3><i class="fa-solid fa-address-book"></i> Kontakte</h3>
@@ -350,20 +367,23 @@
                         <h4>Kontakt hinzufügen</h4>
                         <ol>
                             <ul>
-                            Sie gehen auf die Telefon App.<br>
-                                In der App gehen sie auf das blaue Plus tippen und dort Namen und Telefonnummer ein und drücken auf sichern.
+                                Sie gehen auf die Telefon App.<br />
+                                In der App gehen sie auf das blaue Plus tippen und dort Namen und Telefonnummer ein und
+                                drücken auf sichern.
                             </ul>
                         </ol>
-                        <br>
+                        <br />
                         <h4>Kontakt entfernen</h4>
                         <ol>
                             <ul>
-                                Sie öffnen ihr Handy gehen in die Telefon App danach suchen sie denn Namen raus denn sie löschen wollen. Sie gehen auf denn Namen drauf und scrollen nach ganz unten und drücken auf Anrufer:in blockieren
+                                Sie öffnen ihr Handy gehen in die Telefon App danach suchen sie denn Namen raus denn sie
+                                löschen wollen. Sie gehen auf denn Namen drauf und scrollen nach ganz unten und drücken
+                                auf Anrufer:in blockieren
                             </ul>
                         </ol>
                     </div>
                 </div>
-                
+
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_password')">
                         <h3><i class="fa-solid fa-key"></i> Passwort</h3>
@@ -386,10 +406,15 @@
                             aria-label="Container vorlesen">
                             Vorlesen Stoppen
                         </button>
-                        <p>Als erstes entsperren sie ihr iPhone und gehen in die Einstellungen. Dann gehen sie auf die Face ID und Code scrollen runter bis zu der Stellen wo, Code ändern,, dann geben sie ihren ihren aktuellen Code ein und dann geben sie ihren neuen Code ein zweites Mal zur Bestätigung ein</p>
+                        <p>
+                            Als erstes entsperren sie ihr iPhone und gehen in die Einstellungen. Dann gehen sie auf die
+                            Face ID und Code scrollen runter bis zu der Stellen wo, Code ändern,, dann geben sie ihren
+                            ihren aktuellen Code ein und dann geben sie ihren neuen Code ein zweites Mal zur Bestätigung
+                            ein
+                        </p>
                     </div>
                 </div>
-                
+
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_wlan')">
                         <h3><i class="fa-solid fa-wifi"></i> WLAN Verbindung erstellen</h3>
@@ -400,10 +425,7 @@
                     </div>
                     <div id="Text_wlan" style="display: none">
                         <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_wlan')"
-                            aria-label="Container vorlesen">
+                        <button class="voice-btn" onclick="readContainer('Text_wlan')" aria-label="Container vorlesen">
                             Vorlesen lassen
                         </button>
                         <button
@@ -412,10 +434,13 @@
                             aria-label="Container vorlesen">
                             Vorlesen Stoppen
                         </button>
-                        <p>Sie müssen ihr IPhone entsperren, dann gehen sie in die Einstellungen. Dort gehen sie auf wlan und gehen auf denn Namen ihres Euters und geben das Passwort des Wlanruters ein</p>
+                        <p>
+                            Sie müssen ihr IPhone entsperren, dann gehen sie in die Einstellungen. Dort gehen sie auf
+                            wlan und gehen auf denn Namen ihres Euters und geben das Passwort des Wlanruters ein
+                        </p>
                     </div>
                 </div>
-                
+
                 <div class="container">
                     <div class="container-title" onClick="ToggleText('Text_backups')">
                         <h3><i class="fa-solid fa-cloud"></i> Backups erstellen</h3>
@@ -438,11 +463,12 @@
                             aria-label="Container vorlesen">
                             Vorlesen Stoppen
                         </button>
-                        <p>Sie öffnen ihr Handy. Gehen in die Einstellungen und geben in die suchleiste Backups ein und tippen auf Backups erstellen, dann warten sie auf die abgelodeten Daten</p>
+                        <p>
+                            Sie öffnen ihr Handy. Gehen in die Einstellungen und geben in die suchleiste Backups ein und
+                            tippen auf Backups erstellen, dann warten sie auf die abgelodeten Daten
+                        </p>
                     </div>
                 </div>
-                
-                
             </div>
         </main>
         <script>
@@ -510,6 +536,25 @@
                 } else {
                     alert("Ihr Smartphone unterstützt die Vorlese-funktion leider nicht.");
                 }
+            }
+
+            function urlHasRgbParam() {
+                return new URLSearchParams(window.location.search).has("rgb");
+            }
+
+            function startColorLoop() {
+                const colors = ["red", "orange", "yellow", "green", "cyan", "blue", "indigo", "violet", "pink"];
+                let index = 0;
+
+                setInterval(() => {
+                    const currentColor = colors[index % colors.length];
+                    document.documentElement.style.setProperty("--primary", currentColor);
+                    index++;
+                }, 500); // alle 500ms Farbe ändern
+            }
+
+            if (urlHasRgbParam()) {
+                startColorLoop();
             }
         </script>
     </body>
