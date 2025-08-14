@@ -9,17 +9,20 @@
             referrerpolicy="no-referrer" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <title>SmartSenior App</title>
+        <title>SmartGuide - Ihr IPhone-Begleiter</title>
         <style>
             :root {
                 --bg: linear-gradient(140deg, #e9e9e9 0%, #f1f1f1 100%);
                 --text: #111111;
-                --primary: #000bb9;
-                --primary-dark: #000889;
-                --primary-light: #e6f8f9;
+                --primary: #2563eb;
+                --primary-dark: #1d4ed8;
+                --primary-light: #dbeafe;
                 --success: #16a34a;
                 --warning: #f59e0b;
                 --danger: #dc2626;
+                --border: #d1d5db;
+                --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                --font-size: 18px;
             }
 
             body {
@@ -27,116 +30,224 @@
                 color: var(--text);
                 font-family: system-ui, sans-serif;
                 line-height: 1.6;
-                max-width: 600px;
-                font-size: 18px;
+                max-width: 800px;
+                font-size: var(--font-size);
                 margin: 0 auto;
                 padding: 20px;
+                transition: font-size 0.3s ease;
             }
 
-            @media (max-width: 768px) {
-                .container {
-                    padding: 12px;
-                }
-
-                .right {
-                    right: 15px;
-                }
+            /* Dark Mode */
+            .dark-mode {
+                --bg: linear-gradient(140deg, #1f2937 0%, #111827 100%);
+                --text: #f9fafb;
+                --border: #374151;
+                --primary-light: #1e3a8a;
             }
 
+            .dark-mode .container {
+                background: rgba(31, 41, 55, 0.8);
+                border-color: var(--border);
+            }
+
+            /* Font Size Controls */
+            .accessibility-controls {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .control-btn {
+                background: var(--primary);
+                color: white;
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-size: 20px;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+                transition: transform 0.2s;
+            }
+
+            .control-btn:hover {
+                transform: scale(1.1);
+                background: var(--primary-dark);
+            }
+
+            /* Progress System */
+            .progress-bar {
+                width: 100%;
+                height: 8px;
+                background: #e5e7eb;
+                border-radius: 4px;
+                margin: 20px 0;
+                overflow: hidden;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: linear-gradient(90deg, var(--primary), var(--success));
+                width: 0%;
+                transition: width 0.5s ease;
+            }
+
+            /* Breadcrumb Navigation */
+            .breadcrumb {
+                padding: 15px 0;
+                color: #6b7280;
+                font-size: 14px;
+            }
+
+            .breadcrumb a {
+                color: var(--primary);
+                text-decoration: none;
+            }
+
+            /* Difficulty Levels */
+            .difficulty-selector {
+                display: flex;
+                gap: 10px;
+                margin: 20px 0;
+                flex-wrap: wrap;
+            }
+
+            .difficulty-btn {
+                padding: 8px 16px;
+                border: 2px solid var(--border);
+                background: white;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .difficulty-btn.active {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+
+            .difficulty-beginner {
+                border-color: var(--success);
+            }
+            .difficulty-intermediate {
+                border-color: var(--warning);
+            }
+            .difficulty-advanced {
+                border-color: var(--danger);
+            }
+
+            /* Container improvements */
+            .container {
+                background: rgba(255, 255, 255, 0.9);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                box-shadow: var(--shadow);
+                padding: 20px;
+                margin-bottom: 20px;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .container:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .container-title {
+                line-height: 1.2;
+                cursor: pointer;
+            }
+
+            .container-title h3 {
+                margin-bottom: 8px;
+                font-size: 1.4em;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .container-title h5 {
+                color: #6b7280;
+                margin-top: 0;
+                font-weight: normal;
+                margin-bottom: 15px;
+            }
+
+            /* New category styles */
+            .category-security {
+                border-left: 4px solid var(--danger);
+            }
+            .category-basics {
+                border-left: 4px solid var(--primary);
+            }
+            .category-advanced {
+                border-left: 4px solid var(--warning);
+            }
+            .category-help {
+                border-left: 4px solid var(--success);
+            }
+
+            /* Interactive elements */
             .interactive {
                 background: var(--primary);
                 color: white;
-                padding: 0.6rem 1.2rem;
+                padding: 12px 24px;
                 border: none;
-                border-radius: 6px;
+                border-radius: 8px;
                 font-weight: 600;
                 cursor: pointer;
-                transition: background 0.2s;
+                transition: all 0.2s;
+                font-size: 16px;
+                min-height: 48px;
+            }
+
+            .interactive:hover {
+                background: var(--primary-dark);
+                transform: translateY(-1px);
             }
 
             .interactive-special {
                 background: var(--primary-light);
                 color: var(--primary);
                 border: 2px solid var(--primary);
-                padding: 0.6rem 1.2rem;
-                border-radius: 6px;
+                padding: 12px 24px;
+                border-radius: 8px;
                 font-weight: 600;
                 cursor: pointer;
                 transition: all 0.2s;
+                min-height: 48px;
             }
 
-            .interactive:hover,
-            .interactive-special:hover {
-                background: var(--primary-dark);
-            }
-
-            .highlight {
-                background: var(--primary-light);
-                padding: 1rem;
-                border-radius: 8px;
-            }
-
-            .container {
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-                padding: 15px;
-                width: 90%;
-                margin-bottom: 15px;
-            }
-
-            .container-title {
-                line-height: 1;
-            }
-
-            .container-title h3 {
-                margin-bottom: 4px;
-                font-size: 1.3em;
-            }
-
-            .container-title h5 {
-                color: #666;
-                margin-top: 0;
-                font-weight: normal;
-            }
-
-            .toggle-icon {
-                cursor: pointer;
-                transition: all 0.3s ease;
-                color: var(--primary);
-                font-size: 16px;
-                text-decoration: underline;
-                padding: 8px 0;
-                display: inline-block;
-            }
-
-            .toggle-icon:hover {
-                color: var(--primary-dark);
-                background: var(--primary-light);
-                padding: 8px 12px;
-                border-radius: 4px;
-            }
-
-            .toggle-icon.rotated {
-                transform: rotate(3deg);
-            }
-
-            .right {
-                position: absolute;
-                right: 10%;
-            }
-
-            #search {
+            .voice-btn {
+                background: var(--success);
+                color: white;
+                border: none;
                 padding: 12px 16px;
-                font-size: 16px;
-                border: 2px solid #ddd;
                 border-radius: 6px;
+                cursor: pointer;
+                margin: 5px;
+                font-size: 16px;
+                min-height: 48px;
+            }
+
+            .voice-btn:hover {
+                background: #15803d;
+            }
+
+            /* Search improvements */
+            #search {
+                padding: 16px 20px;
+                font-size: 18px;
+                border: 2px solid var(--border);
+                border-radius: 10px;
                 width: 100%;
                 box-sizing: border-box;
-            }
-
-            #search::placeholder {
-                color: var(--primary-light);
+                min-height: 56px;
             }
 
             #search:focus {
@@ -144,37 +255,18 @@
                 border-color: var(--primary);
             }
 
-            .interactive:focus,
-            .interactive-special:focus,
-            .container-title:focus {
-                outline: 3px solid var(--primary);
-                outline-offset: 2px;
-            }
-
-            .voice-btn {
-                background: var(--success);
-                color: white;
-                border: none;
-                padding: 8px 12px;
-                border-radius: 4px;
-                cursor: pointer;
-                margin-left: 10px;
-                font-size: 16px;
-            }
-
-            .voice-btn:hover {
-                background: #15803d;
-            }
-
+            /* Step improvements */
             .step-list {
                 counter-reset: step-counter;
+                padding-left: 0;
             }
 
             .step-list li {
                 counter-increment: step-counter;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 position: relative;
-                padding-left: 40px;
+                padding-left: 50px;
+                list-style: none;
             }
 
             .step-list li::before {
@@ -184,56 +276,232 @@
                 top: 0;
                 background: var(--primary);
                 color: white;
-                width: 25px;
-                height: 25px;
+                width: 32px;
+                height: 32px;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-weight: bold;
-                font-size: 14px;
+                font-size: 16px;
             }
 
+            /* Enhanced tip box */
             .tip-box {
-                background: #fff3cd;
-                border: 1px solid #ffeaa7;
-                border-radius: 6px;
-                padding: 12px;
-                margin: 10px 0;
+                background: linear-gradient(135deg, #fef3c7, #fde68a);
+                border: 1px solid #f59e0b;
+                border-radius: 10px;
+                padding: 16px;
+                margin: 15px 0;
+                position: relative;
             }
 
-            .tip-box strong {
-                color: #856404;
+            .tip-box::before {
+                content: "💡";
+                font-size: 24px;
+                position: absolute;
+                top: 16px;
+                right: 16px;
             }
-            
-            video {
-                border-radius: 15px;
+
+            /* Security warning box */
+            .warning-box {
+                background: linear-gradient(135deg, #fecaca, #fca5a5);
+                border: 1px solid var(--danger);
+                border-radius: 10px;
+                padding: 16px;
+                margin: 15px 0;
+                position: relative;
+            }
+
+            .warning-box::before {
+                content: "⚠️";
+                font-size: 24px;
+                position: absolute;
+                top: 16px;
+                right: 16px;
+            }
+
+            /* Success box */
+            .success-box {
+                background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+                border: 1px solid var(--success);
+                border-radius: 10px;
+                padding: 16px;
+                margin: 15px 0;
+                position: relative;
+            }
+
+            .success-box::before {
+                content: "✅";
+                font-size: 24px;
+                position: absolute;
+                top: 16px;
+                right: 16px;
+            }
+
+            /* Toggle improvements */
+            .toggle-icon {
+                background: var(--primary-light);
+                color: var(--primary);
+                padding: 12px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: inline-block;
+                font-weight: 600;
+                border: 2px solid transparent;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .toggle-icon:hover {
+                background: var(--primary);
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            /* Media improvements */
+            video,
+            img {
+                border-radius: 12px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Responsive improvements */
+            @media (max-width: 768px) {
+                .accessibility-controls {
+                    position: relative;
+                    top: auto;
+                    right: auto;
+                    flex-direction: row;
+                    justify-content: center;
+                    margin: 20px 0;
+                }
+
+                .difficulty-selector {
+                    justify-content: center;
+                }
+
+                body {
+                    padding: 15px;
+                }
+            }
+
+            /* Quiz styles */
+            .quiz-container {
+                background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+                border-radius: 12px;
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .quiz-question {
+                font-weight: 600;
+                margin-bottom: 15px;
+                font-size: 1.1em;
+            }
+
+            .quiz-options {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .quiz-option {
+                background: white;
+                border: 2px solid var(--border);
+                padding: 12px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .quiz-option:hover {
+                border-color: var(--primary);
+                background: var(--primary-light);
+            }
+
+            .quiz-option.correct {
+                border-color: var(--success);
+                background: #d1fae5;
+            }
+
+            .quiz-option.incorrect {
+                border-color: var(--danger);
+                background: #fecaca;
             }
         </style>
     </head>
     <body>
-        <header style="line-height: 1; line-height: 1">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                <img
-                    style="max-width: 30%; max-height: auto; border-radius: 15%; filter: invert(100%)"
-                    src="https://videos.openai.com/vg-assets/assets%2Ftask_01k2hbm5hqej8aja8bg8gp1nrf%2F1755076819_img_1.webp?st=2025-08-13T07%3A45%3A06Z&se=2025-08-19T08%3A45%3A06Z&sks=b&skt=2025-08-13T07%3A45%3A06Z&ske=2025-08-19T08%3A45%3A06Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=nyg1x%2Bdm7uOCxRZu%2B7RkbNW9JISlklc%2FTecIb0hIhuM%3D&az=oaivgprodscus"
-                    alt="Logo" />
-                <h1>SmartSenior</h1>
+        <!-- Accessibility Controls -->
+        <div class="accessibility-controls">
+            <button class="control-btn" onclick="increaseFontSize()" title="Schrift vergrößern">
+                <i class="fas fa-plus"></i>
+            </button>
+            <button class="control-btn" onclick="decreaseFontSize()" title="Schrift verkleinern">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button class="control-btn" onclick="toggleDarkMode()" title="Dunkler/Heller Modus">
+                <i class="fas fa-moon" id="darkModeIcon"></i>
+            </button>
+        </div>
+
+        <header>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px">
+                <div
+                    style="
+                        background: var(--primary);
+                        color: white;
+                        padding: 15px;
+                        border-radius: 50%;
+                        font-size: 32px;
+                    ">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div>
+                    <h1 style="margin: 0; color: var(--primary)">SmartGuide</h1>
+                    <p style="margin: 5px 0; color: #6b7280">Ihr freundlicher IPhone-Begleiter</p>
+                </div>
             </div>
-            <p>
-                Eine App, um zu verstehen, wie ein Smartphone funktioniert.<br />
-                Auf dem Smartphone, für das Smartphone.
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+            <p style="text-align: center; color: #6b7280; margin: 5px 0">
+                Ihr Fortschritt: <span id="progressText">0%</span>
             </p>
-            <br />
-            <hr />
-            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                <label style="flex: 0 0 10%" for="search">Suchen</label>
+
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb" id="breadcrumb">
+                <i class="fas fa-home"></i> <a href="#" onclick="goHome()">Startseite</a>
+            </div>
+
+            <!-- Difficulty Selector -->
+            <div class="difficulty-selector">
+                <button class="difficulty-btn difficulty-beginner active" onclick="setDifficulty('beginner')">
+                    <i class="fas fa-seedling"></i> Anfänger
+                </button>
+                <button class="difficulty-btn difficulty-intermediate" onclick="setDifficulty('intermediate')">
+                    <i class="fas fa-star-half-alt"></i> Fortgeschritten
+                </button>
+                <button class="difficulty-btn difficulty-advanced" onclick="setDifficulty('advanced')">
+                    <i class="fas fa-crown"></i> Experte
+                </button>
+            </div>
+
+            <!-- Search -->
+            <div style="display: flex; align-items: center; gap: 15px; margin: 20px 0">
+                <label style="min-width: 80px; font-weight: 600" for="search">
+                    <i class="fas fa-search"></i> Suchen:
+                </label>
                 <input
-                    style="flex: 1; color: white"
                     type="search"
                     id="search"
-                    class="interactive"
-                    placeholder="Zum Suchen hier tippen..."
+                    placeholder="Was möchten Sie lernen? (z.B. 'Nachrichten', 'Sicherheit')"
                     list="suchbegriffe" />
                 <datalist id="suchbegriffe">
                     <option value="Nachrichten"></option>
@@ -241,596 +509,887 @@
                     <option value="Apps"></option>
                     <option value="WLAN"></option>
                     <option value="Kontakte"></option>
+                    <option value="Sicherheit"></option>
+                    <option value="Fotos"></option>
+                    <option value="Notfall"></option>
                 </datalist>
             </div>
-                <div id="EasterEgg" style="display: none;">
-                    <br>
-                    <p>We like to Party!</p>
-                    <img src="serafino.png" alt="Serafino"/>
-                    <img src="marian.png" alt="Marian"/>
-                </div>
         </header>
+
         <main>
-            <div DevComment="easy">
-                <hr />
-                <h2>Grundlagen</h2>
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_Nachrichten')">
+            <!-- Grundlagen Section -->
+            <section id="basics-section">
+                <hr style="margin: 30px 0" />
+                <h2 style="color: var(--primary); text-align: center">
+                    <i class="fas fa-graduation-cap"></i> Grundlagen
+                </h2>
+
+                <!-- Existing containers with improvements -->
+                <div class="container category-basics" data-topic="nachrichten" data-difficulty="beginner">
+                    <div class="container-title" onClick="toggleContent('Text_Nachrichten', this)">
                         <h3><i class="fa-solid fa-comments"></i> Nachrichten</h3>
-                        <h5>Verschicken und empfangen.<br />E-Mails, SMS oder WhatsApp-Nachrichten</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Nachrichten-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
+                        <h5>Verschicken und empfangen von E-Mails, SMS oder WhatsApp-Nachrichten</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Jetzt lernen</div>
                     </div>
                     <div id="Text_Nachrichten" style="display: none">
                         <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_Nachrichten')"
-                            aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.08.21.mp4
-" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
-                        <p>
-                            <strong>Nachrichten verschicken - so geht's:</strong><br />
-                            Es gibt verschiedene Apps für Nachrichten (WhatsApp, SMS, E-Mail). Die grundlegenden
-                            Schritte sind bei allen ähnlich.
-                        </p>
+                        <div style="margin: 15px 0">
+                            <button class="voice-btn" onclick="readContainer('Text_Nachrichten')">
+                                <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                            <button class="voice-btn" onclick="window.speechSynthesis.cancel();">
+                                <i class="fas fa-stop"></i> Stoppen
+                            </button>
+                        </div>
+
+                        <p><strong>Nachrichten verschicken - so einfach geht's:</strong></p>
 
                         <ol class="step-list">
                             <li>
-                                <strong>App finden:</strong> Wischen Sie mit dem Finger von oben nach unten über den
-                                Bildschirm. Es öffnet sich die Suche.
-                                <br />
-                                <img
-                                    style="max-width: 90%; max-height: auto; margin-top: 8px"
-                                    src="https://www.ubackup.com/de/phone/screenshot/others/iphone/search-apps-on-iphone.png" />
+                                <strong>App finden:</strong> Wischen Sie vom oberen Bildschirmrand nach unten für die
+                                Suche.
                             </li>
-
                             <li>
-                                <strong>App öffnen:</strong> Tippen Sie "WhatsApp" oder "Nachrichten" in die Suchleiste
-                                ein. Berühren Sie dann die entsprechende App, wenn sie erscheint.
+                                <strong>App öffnen:</strong> Tippen Sie "WhatsApp" oder "Nachrichten" ein und wählen die
+                                App aus.
                             </li>
-
                             <li>
-                                <strong>Kontakt auswählen:</strong> Suchen Sie den gewünschten Kontakt und tippen Sie
-                                auf die Unterhaltung. Tippen Sie dann auf das Textfeld ganz unten.
-                                <br />
-                                <img
-                                    style="max-width: 90%; max-height: auto; margin-top: 8px"
-                                    src="https://www.inside-digital.de/img/whatsapp-iphone-chats.jpg" />
+                                <strong>Kontakt wählen:</strong> Suchen Sie den gewünschten Kontakt und tippen auf die
+                                Unterhaltung.
                             </li>
-
                             <li>
-                                <strong>Nachricht schreiben:</strong> Tippen Sie Ihre Nachricht ein und drücken Sie auf
-                                den Pfeil rechts, um sie zu versenden.
-                                <br />
-                                <img
-                                    style="max-width: 90%; max-height: auto; margin-top: 8px; border-radius: 15px;"
-                                    src="https://discussions.apple.com/content/attachment/29a57433-e959-4fdf-aec7-7cc21026bf82" />
+                                <strong>Nachricht schreiben:</strong> Tippen Sie ins Textfeld und schreiben Ihre
+                                Nachricht.
                             </li>
+                            <li><strong>Senden:</strong> Tippen Sie auf den Pfeil-Button zum Versenden.</li>
                         </ol>
 
                         <div class="tip-box">
-                            <strong>Tipp:</strong> Wenn Ihr Kontakt antwortet, wissen Sie, dass die Nachricht angekommen
-                            ist.
+                            <strong>Profi-Tipp:</strong> Wenn Ihr Kontakt antwortet, wissen Sie sicher, dass die
+                            Nachricht angekommen ist. Bei WhatsApp sehen Sie auch blaue Häkchen als Bestätigung.
                         </div>
 
-                        <button class="interactive" onClick="ToggleText('Text_Nachrichten')">Schließen</button>
+                        <div class="quiz-container">
+                            <div class="quiz-question">
+                                <i class="fas fa-question-circle"></i> Quiz: Wie öffnen Sie die Suchfunktion auf dem
+                                iPhone?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectQuizAnswer(this, false)">
+                                    Von unten nach oben wischen
+                                </div>
+                                <div class="quiz-option" onclick="selectQuizAnswer(this, true)">
+                                    Von oben nach unten wischen
+                                </div>
+                                <div class="quiz-option" onclick="selectQuizAnswer(this, false)">
+                                    Home-Button zweimal drücken
+                                </div>
+                            </div>
+                        </div>
+
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Nachrichten', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
                     </div>
                 </div>
 
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_Anrufe')">
+                <!-- More improved containers... -->
+                <div class="container category-basics" data-topic="anrufe" data-difficulty="beginner">
+                    <div class="container-title" onClick="toggleContent('Text_Anrufe', this)">
                         <h3><i class="fa-solid fa-phone-volume"></i> Anrufe</h3>
-                        <h5>Anrufen und Anrufe annehmen</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Anruf-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
+                        <h5>Telefonate führen und entgegennehmen</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Jetzt lernen</div>
                     </div>
                     <div id="Text_Anrufe" style="display: none">
                         <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_Anrufe')"
-                            aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.19.59.mp4
-" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
+                        <div style="margin: 15px 0">
+                            <button class="voice-btn" onclick="readContainer('Text_Anrufe')">
+                                <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                            <button class="voice-btn" onclick="window.speechSynthesis.cancel();">
+                                <i class="fas fa-stop"></i> Stoppen
+                            </button>
+                        </div>
 
-                        <p><strong>Anrufe tätigen:</strong></p>
+                        <h4><i class="fas fa-phone"></i> Anrufe tätigen:</h4>
                         <ol class="step-list">
-                            <li>Öffnen Sie die "Telefon"-App (grünes Symbol mit Telefonhörer)<br>
-                            <img style="max-width: 70%; max-height: auto; margin-top: 8px; border-radius: 15px;" src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Image%202025-08-13%20at%2012.22.17.jpeg" alt="Telefon App"/></li>
-                            <li>
-                                Wählen Sie eine Option:
-                                <ul>
-                                    <li>
-                                        <strong>Kontakt anrufen:</strong> Tippen Sie auf "Kontakte" und wählen Sie eine
-                                        Person aus<br>
-                            <img style="max-width: 70%; max-height: auto; margin-top: 8px; border-radius: 15px;" src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Image%202025-08-13%20at%2012.22.18.jpeg" alt="Telefon App"/>
-                                    </li>
-                                    <li>
-                                        <strong>Nummer eingeben:</strong> Tippen Sie auf "Ziffernblock" und geben Sie
-                                        die Telefonnummer ein<br>
-                            <img style="max-width: 70%; max-height: auto; margin-top: 8px; border-radius: 15px;" src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Image%202025-08-13%20at%2012.22.18%20(1).jpeg" alt="Telefon App"/>
-                                    </li>
-                                </ul>
-                            </li>
+                            <li>Öffnen Sie die grüne "Telefon"-App</li>
+                            <li>Wählen Sie zwischen "Kontakte" oder "Ziffernblock"</li>
                             <li>Tippen Sie auf den grünen Anruf-Button</li>
                         </ol>
 
-                        <p><strong>Anrufe annehmen:</strong></p>
+                        <h4><i class="fas fa-phone-alt"></i> Anrufe annehmen:</h4>
                         <ol class="step-list">
-                            <li>Wenn das Telefon klingelt, erscheint ein Bildschirm mit dem Namen oder der Nummer</li>
-                            <li>Schieben Sie den grünen Button nach rechts, um anzunehmen</li>
-                            <li>Schieben Sie den roten Button nach links, um abzulehnen</li>
+                            <li>Bei eingehendem Anruf erscheint der Anruf-Bildschirm</li>
+                            <li>Grüner Button nach rechts = Annehmen</li>
+                            <li>Roter Button nach links = Ablehnen</li>
                         </ol>
 
                         <div class="tip-box">
-                            <strong>Tipp:</strong> Während eines Anrufs können Sie auf "Stumm" tippen, um Ihr Mikrofon
-                            auszuschalten, oder auf "Lautsprecher" für Freisprechen.
+                            <strong>Nützliche Funktionen während des Anrufs:</strong> "Stumm" schaltet Ihr Mikrofon aus,
+                            "Lautsprecher" aktiviert die Freisprechfunktion.
                         </div>
 
-                        <button class="interactive" onClick="ToggleText('Text_Anrufe')">Schließen</button>
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Anrufe', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
                     </div>
                 </div>
+            </section>
 
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_Apps')">
-                        <h3><i class="fa-brands fa-app-store"></i> Apps</h3>
-                        <h5>Finden und öffnen</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="App-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
+            <!-- New Security Section -->
+            <section id="security-section">
+                <hr style="margin: 30px 0" />
+                <h2 style="color: var(--danger); text-align: center">
+                    <i class="fas fa-shield-alt"></i> Sicherheit & Schutz
+                </h2>
+
+                <div class="container category-security" data-topic="sicherheit" data-difficulty="beginner">
+                    <div class="container-title" onClick="toggleContent('Text_Sicherheit', this)">
+                        <h3><i class="fa-solid fa-shield-halved"></i> Betrugsmaschen erkennen</h3>
+                        <h5>Schützen Sie sich vor Betrügern am Telefon und online</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Wichtig zu wissen</div>
                     </div>
-                    <div id="Text_Apps" style="display: none">
+                    <div id="Text_Sicherheit" style="display: none">
                         <hr />
-                        <button class="voice-btn" onclick="readContainer('Text_Apps')" aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-
-                        <p><strong>Apps finden und öffnen:</strong></p>
-
-                        <h4>Methode 1: Über die Suche</h4>
-                        <ol class="step-list">
-                            <li>Wischen Sie mit dem Finger von oben nach unten über den Bildschirm</li>
-                            <li>Geben Sie den Namen der App in die Suchleiste ein (z.B. "Wetter", "Kamera")<br>
-                            <img style="max-width: 70%; max-height: auto; margin-top: 8px; border-radius: 15px;" src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Image%202025-08-13%20at%2012.29.57.jpeg" alt="Telefon App"/></li>
-                            <li>Tippen Sie auf die App, um sie zu öffnen</li>
-                        </ol>
-
-                        <h4>Methode 2: Auf dem Homebildschirm</h4>
-                        <ol class="step-list">
-                            <li>Schauen Sie auf Ihren Homebildschirm (Hauptbildschirm)<br>
-                            <img style="max-width: 70%; max-height: auto; margin-top: 8px; border-radius: 15px;" src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Image%202025-08-13%20at%2012.29.56.jpeg" alt="Telefon App"/></li>
-                            <li>Wischen Sie nach links oder rechts, um weitere App-Seiten zu sehen<br>
-                            <img style="max-width: 70%; max-height: auto; margin-top: 8px; border-radius: 15px;" src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Image%202025-08-13%20at%2012.29.56%20(1).jpeg" alt="Telefon App"/></li>
-                            <li>Tippen Sie auf die gewünschte App</li>
-                        </ol>
-
-                        <div class="tip-box">
-                            <strong>Tipp:</strong> Die Suchfunktion ist oft der schnellste Weg, eine App zu finden,
-                            besonders wenn Sie viele Apps haben.
+                        <div style="margin: 15px 0">
+                            <button class="voice-btn" onclick="readContainer('Text_Sicherheit')">
+                                <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
                         </div>
 
-                        <button class="interactive" onClick="ToggleText('Text_Apps')">Schließen</button>
-                    </div>
-                </div>
+                        <div class="warning-box">
+                            <strong>Achtung vor diesen Betrugsmaschen:</strong>
+                        </div>
 
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_wlan_mobiledaten')">
-                        <h3><i class="fa-solid fa-wifi"></i> WLAN und mobile Daten</h3>
-                        <h5>Was ist der Unterschied?</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="WLAN-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
-                    </div>
-                    <div id="Text_wlan_mobiledaten" style="display: none">
-                        <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_wlan_mobiledaten')"
-                            aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.09.46.mp4
-" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
-
-                        <p><strong>Der Unterschied zwischen WLAN und mobilen Daten:</strong></p>
-
-                        <h4><i class="fa-solid fa-wifi"></i> WLAN</h4>
+                        <h4><i class="fas fa-exclamation-triangle"></i> Häufige Betrugsversuche:</h4>
                         <ul>
                             <li>
-                                <strong>Was ist das?</strong> Ein drahtloses Netzwerk zu Hause, im Büro oder an
-                                öffentlichen Orten
+                                <strong>Enkeltrick:</strong> Anrufer geben sich als Verwandte aus und bitten um Geld
                             </li>
-                            <li><strong>Vorteil:</strong> Meist unbegrenzte Internetnutzung ohne zusätzliche Kosten</li>
-                            <li><strong>Nachteil:</strong> Nur in der Nähe des WLAN-Routers verfügbar</li>
+                            <li><strong>Falsche Polizisten:</strong> Behaupten, Ihr Geld sei in Gefahr</li>
+                            <li><strong>Phishing-SMS:</strong> Gefälschte Nachrichten von Banken oder Paketdiensten</li>
+                            <li><strong>Fake-Apps:</strong> Nachgemachte Banking-Apps im App Store</li>
                         </ul>
 
-                        <h4><i class="fa-solid fa-signal"></i> Mobile Daten</h4>
-                        <ul>
-                            <li><strong>Was ist das?</strong> Internet über das Mobilfunknetz (überall verfügbar)</li>
-                            <li><strong>Vorteil:</strong> Funktioniert unterwegs, auch ohne WLAN</li>
-                            <li><strong>Nachteil:</strong> Oft begrenzte Datenmenge pro Monat</li>
+                        <h4><i class="fas fa-shield-virus"></i> So schützen Sie sich:</h4>
+                        <ol class="step-list">
+                            <li><strong>Niemals persönliche Daten am Telefon preisgeben</strong></li>
+                            <li>
+                                <strong>Bei verdächtigen Anrufen auflegen</strong> und bei der echten Nummer zurückrufen
+                            </li>
+                            <li><strong>Links in SMS nicht anklicken</strong> - immer die offizielle App öffnen</li>
+                            <li><strong>Apps nur aus dem offiziellen App Store</strong> herunterladen</li>
+                        </ol>
+
+                        <div class="success-box">
+                            <strong>Merksatz:</strong> Seriöse Unternehmen und Behörden fragen niemals am Telefon oder
+                            per SMS nach Passwörtern, PINs oder persönlichen Daten!
+                        </div>
+
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Sicherheit', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="container category-security" data-topic="notfall" data-difficulty="beginner">
+                    <div class="container-title" onClick="toggleContent('Text_Notfall', this)">
+                        <h3><i class="fa-solid fa-ambulance"></i> Notfall-Funktionen</h3>
+                        <h5>Schnell Hilfe rufen und Standort teilen</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Kann Leben retten</div>
+                    </div>
+                    <div id="Text_Notfall" style="display: none">
+                        <hr />
+                        <div style="margin: 15px 0">
+                            <button class="voice-btn" onclick="readContainer('Text_Notfall')">
+                                <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                        </div>
+
+                        <div class="warning-box">
+                            <strong>Im Notfall jede Sekunde zählt!</strong> Diese Funktionen können Leben retten.
+                        </div>
+
+                        <h4><i class="fas fa-phone-alt"></i> Notruf absetzen:</h4>
+                        <ol class="step-list">
+                            <li><strong>Schnellzugriff:</strong> 5x den Ein-/Ausschalter drücken für SOS-Modus</li>
+                            <li><strong>Oder klassisch:</strong> Telefon-App öffnen und 112 wählen</li>
+                            <li><strong>Sprechen Sie deutlich:</strong> "Wo ist was passiert?"</li>
+                            <li><strong>Nicht auflegen</strong> bis die Leitstelle es sagt</li>
+                        </ol>
+
+                        <h4><i class="fas fa-map-marker-alt"></i> Standort teilen:</h4>
+                        <ol class="step-list">
+                            <li>WhatsApp öffnen und Chat wählen</li>
+                            <li>Auf das Plus-Symbol tippen</li>
+                            <li>"Standort" auswählen</li>
+                            <li>"Live-Standort teilen" für Echtzeitverfolgung</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>ICE-Kontakte einrichten:</strong> Gehen Sie zu Kontakte → "Notfallpass" und fügen
+                            wichtige Kontakte hinzu. Diese sind auch bei gesperrtem Handy erreichbar.
+                        </div>
+
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Notfall', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- New Advanced Features Section -->
+            <section id="advanced-section">
+                <hr style="margin: 30px 0" />
+                <h2 style="color: var(--warning); text-align: center">
+                    <i class="fas fa-star"></i> Erweiterte Funktionen
+                </h2>
+
+                <div class="container category-advanced" data-topic="fotos" data-difficulty="intermediate">
+                    <div class="container-title" onClick="toggleContent('Text_Fotos', this)">
+                        <h3><i class="fa-solid fa-camera"></i> Fotos & Videos</h3>
+                        <h5>Aufnehmen, bearbeiten und teilen</h5>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i> Entdecken Sie die Möglichkeiten
+                        </div>
+                    </div>
+                    <div id="Text_Fotos" style="display: none">
+                        <hr />
+                        <div style="margin: 15px 0">
+                            <button class="voice-btn" onclick="readContainer('Text_Fotos')">
+                                <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                        </div>
+
+                        <h4><i class="fas fa-camera"></i> Fotos aufnehmen:</h4>
+                        <ol class="step-list">
+                            <li>Kamera-App öffnen (meist auf dem Homebildschirm)</li>
+                            <li>Motiv im Sucher zentrieren</li>
+                            <li>Auf den weißen Auslöser-Kreis tippen</li>
+                            <li>Foto wird automatisch gespeichert</li>
+                        </ol>
+
+                        <h4><i class="fas fa-share"></i> Fotos teilen:</h4>
+                        <ol class="step-list">
+                            <li>Fotos-App öffnen</li>
+                            <li>Gewünschtes Foto antippen</li>
+                            <li>Auf das Teilen-Symbol tippen (Quadrat mit Pfeil)</li>
+                            <li>WhatsApp, E-Mail oder andere App wählen</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>Foto-Tipp:</strong> Halten Sie das Handy ruhig und achten Sie auf gutes Licht. Bei
+                            schlechten Lichtverhältnissen tippen Sie auf das gelbe Blitz-Symbol.
+                        </div>
+
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Fotos', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="container category-advanced" data-topic="navigation" data-difficulty="intermediate">
+                    <div class="container-title" onClick="toggleContent('Text_Navigation', this)">
+                        <h3><i class="fa-solid fa-map"></i> Navigation & Karten</h3>
+                        <h5>Mit Google Maps ans Ziel finden</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Nie wieder verfahren</div>
+                    </div>
+                    <div id="Text_Navigation" style="display: none">
+                        <hr />
+                        <div style="margin: 15px 0">
+                            <button class="voice-btn" onclick="readContainer('Text_Navigation')">
+                                <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                        </div>
+
+                        <h4><i class="fas fa-route"></i> Route planen:</h4>
+                        <ol class="step-list">
+                            <li>"Karten" oder "Google Maps" App öffnen</li>
+                            <li>Zieladresse in die Suchleiste eingeben</li>
+                            <li>Auf "Route" tippen</li>
+                            <li>Verkehrsmittel wählen (Auto, ÖPNV, zu Fuß)</li>
+                            <li>"Los" antippen für Sprachnavigation</li>
+                        </ol>
+
+                        <h4><i class="fas fa-bus"></i> Öffentliche Verkehrsmittel:</h4>
+                        <ol class="step-list">
+                            <li>In Google Maps das Bus-Symbol wählen</li>
+                            <li>Abfahrtszeiten werden automatisch angezeigt</li>
+                            <li>Verschiedene Verbindungen vergleichen</li>
+                            <li>Ticket-Apps werden oft vorgeschlagen</li>
+                        </ol>
+
+                        <div class="success-box">
+                            <strong>Profi-Tipp:</strong> Aktivieren Sie die Standortfreigabe, damit die App Ihren
+                            aktuellen Standort als Startpunkt verwendet.
+                        </div>
+
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Navigation', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Help & Support Section -->
+            <section id="help-section">
+                <hr style="margin: 30px 0" />
+                <h2 style="color: var(--success); text-align: center">
+                    <i class="fas fa-life-ring"></i> Hilfe & Unterstützung
+                </h2>
+
+                <div class="container category-help" data-topic="hilfe" data-difficulty="beginner">
+                    <div class="container-title" onClick="toggleContent('Text_FAQ', this)">
+                        <h3><i class="fa-solid fa-question-circle"></i> Häufige Fragen</h3>
+                        <h5>Antworten auf die wichtigsten IPhone-Fragen</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Hier finden Sie Antworten</div>
+                    </div>
+                    <div id="Text_FAQ" style="display: none">
+                        <hr />
+
+                        <div style="margin: 20px 0">
+                            <h4><i class="fas fa-battery-quarter"></i> "Mein Akku ist schnell leer - was tun?"</h4>
+                            <p>
+                                <strong>Antwort:</strong> Verringern Sie die Bildschirmhelligkeit, schließen Sie
+                                ungenutzte Apps und aktivieren Sie den Energiesparmodus in den Einstellungen.
+                            </p>
+                        </div>
+
+                        <div style="margin: 20px 0">
+                            <h4><i class="fas fa-wifi"></i> "WLAN verbindet nicht - was ist falsch?"</h4>
+                            <p>
+                                <strong>Antwort:</strong> Prüfen Sie das Passwort, schalten Sie WLAN aus und wieder ein,
+                                oder starten Sie das Handy neu.
+                            </p>
+                        </div>
+
+                        <div style="margin: 20px 0">
+                            <h4><i class="fas fa-memory"></i> "Speicher voll - was kann ich löschen?"</h4>
+                            <p>
+                                <strong>Antwort:</strong> Löschen Sie alte Fotos/Videos, leeren Sie den Papierkorb und
+                                entfernen Sie ungenutzte Apps.
+                            </p>
+                        </div>
+
+                        <div style="margin: 20px 0">
+                            <h4><i class="fas fa-mobile-alt"></i> "Display reagiert nicht richtig?"</h4>
+                            <p>
+                                <strong>Antwort:</strong> Reinigen Sie das Display vorsichtig mit einem weichen Tuch und
+                                starten Sie das Gerät neu.
+                            </p>
+                        </div>
+
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_FAQ', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="container category-help" data-topic="kontakt" data-difficulty="beginner">
+                    <div class="container-title" onClick="toggleContent('Text_Kontakt', this)">
+                        <h3><i class="fa-solid fa-headset"></i> Weitere Hilfe</h3>
+                        <h5>Wenn Sie nicht weiterkommen</h5>
+                        <div class="toggle-icon"><i class="fas fa-chevron-down"></i> Unterstützung finden</div>
+                    </div>
+                    <div id="Text_Kontakt" style="display: none">
+                        <hr />
+
+                        <h4><i class="fas fa-users"></i> Wo Sie Hilfe bekommen:</h4>
+                        <ul style="list-style: none; padding-left: 0">
+                            <li style="margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 8px">
+                                <strong><i class="fas fa-family"></i> Familie & Freunde:</strong><br />
+                                Bitten Sie Ihre Kinder oder Enkel um Hilfe - sie erklären gerne!
+                            </li>
+                            <li style="margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 8px">
+                                <strong><i class="fas fa-store"></i> Handy-Geschäfte:</strong><br />
+                                Viele Anbieter bieten kostenlose Einführungen für Senioren
+                            </li>
+                            <li style="margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 8px">
+                                <strong><i class="fas fa-graduation-cap"></i> Volkshochschule:</strong><br />
+                                IPhone-Kurse speziell für Senioren
+                            </li>
+                            <li style="margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 8px">
+                                <strong><i class="fas fa-phone"></i> Herstellersupport:</strong><br />
+                                Apple: 0800 6645 451 (kostenlos)<br />
+                                Samsung: 06196 77 555 77
+                            </li>
                         </ul>
 
                         <div class="tip-box">
-                            <strong>Wichtiger Tipp:</strong> Nutzen Sie zu Hause immer WLAN, um Ihre mobilen Daten zu
-                            schonen. Mobile Daten sollten nur unterwegs verwendet werden, wenn kein WLAN verfügbar ist.
+                            <strong>Unser Tipp:</strong> Scheuen Sie sich nicht, um Hilfe zu bitten! Jeder hat einmal
+                            angefangen, und die meisten Menschen helfen gerne.
                         </div>
 
-                        <button class="interactive" onClick="ToggleText('Text_wlan_mobiledaten')">Schließen</button>
+                        <button
+                            class="interactive"
+                            onClick="toggleContent('Text_Kontakt', this.closest('.container').querySelector('.container-title'))">
+                            <i class="fas fa-times"></i> Schließen
+                        </button>
                     </div>
                 </div>
+            </section>
 
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_kontakte')">
-                        <h3><i class="fa-solid fa-address-book"></i> Kontakte</h3>
-                        <h5>Hinzufügen und verwalten</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Kontakt-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
-                    </div>
-                    <div id="Text_kontakte" style="display: none">
-                        <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_kontakte')"
-                            aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.12.06.mp4" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
-
-                        <h4>Kontakt hinzufügen</h4>
-                        <ol class="step-list">
-                            <li>Öffnen Sie die "Telefon"-App</li>
-                            <li>Tippen Sie unten auf "Kontakte"</li>
-                            <li>Tippen Sie auf das blaue Plus-Zeichen (+) oben rechts</li>
-                            <li>Geben Sie den Namen und die Telefonnummer ein</li>
-                            <li>Tippen Sie oben rechts auf "Sichern"</li>
-                        </ol>
-
-                        <h4>Kontakt bearbeiten</h4>
-                        <ol class="step-list">
-                            <li>Öffnen Sie die "Telefon"-App und gehen zu "Kontakte"</li>
-                            <li>Suchen Sie den gewünschten Kontakt</li>
-                            <li>Tippen Sie auf den Namen</li>
-                            <li>Tippen Sie oben rechts auf "Bearbeiten"</li>
-                            <li>Nehmen Sie Ihre Änderungen vor und tippen auf "Fertig"</li>
-                        </ol>
-
-                        <h4>Kontakt blockieren</h4>
-                        <ol class="step-list">
-                            <li>Öffnen Sie den Kontakt, den Sie blockieren möchten</li>
-                            <li>Scrollen Sie nach unten</li>
-                            <li>Tippen Sie auf "Kontakt blockieren" (rot)</li>
-                            <li>Bestätigen Sie mit "Kontakt blockieren"</li>
-                        </ol>
-
-                        <div class="tip-box">
-                            <strong>Tipp:</strong> Blockierte Kontakte können Sie nicht mehr anrufen oder Ihnen
-                            Nachrichten schicken. Sie können die Blockierung in den Einstellungen unter "Telefon" →
-                            "Blockiert" wieder aufheben.
-                        </div>
-
-                        <button class="interactive" onClick="ToggleText('Text_kontakte')">Schließen</button>
-                    </div>
+            <!-- Achievement System -->
+            <section id="achievements" style="margin-top: 40px">
+                <hr />
+                <h3 style="text-align: center; color: var(--primary)"><i class="fas fa-trophy"></i> Ihre Erfolge</h3>
+                <div
+                    id="achievementContainer"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 20px 0">
+                    <!-- Achievements will be added by JavaScript -->
                 </div>
-
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_password')">
-                        <h3><i class="fa-solid fa-key"></i> Passwort</h3>
-                        <h5>Ändern und verwalten</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Passwort-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
-                    </div>
-                    <div id="Text_password" style="display: none">
-                        <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_password')"
-                            aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.14.33.mp4
-" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
-
-                        <p><strong>Bildschirmsperre-Code ändern:</strong></p>
-
-                        <ol class="step-list">
-                            <li>Entsperren Sie Ihr iPhone</li>
-                            <li>Öffnen Sie die "Einstellungen"-App</li>
-                            <li>Tippen Sie auf "Face ID & Code" (oder "Touch ID & Code")</li>
-                            <li>Geben Sie Ihren aktuellen Code ein</li>
-                            <li>Scrollen Sie nach unten und tippen auf "Code ändern"</li>
-                            <li>Geben Sie Ihren alten Code ein</li>
-                            <li>Geben Sie Ihren neuen Code ein</li>
-                            <li>Geben Sie den neuen Code zur Bestätigung noch einmal ein</li>
-                        </ol>
-
-                        <div class="tip-box">
-                            <strong>Sicherheitstipp:</strong> Verwenden Sie einen Code, den Sie sich gut merken können,
-                            aber den andere nicht erraten können. Vermeiden Sie einfache Zahlenfolgen wie "1234" oder
-                            Ihr Geburtsjahr.
-                        </div>
-
-                        <button class="interactive" onClick="ToggleText('Text_password')">Schließen</button>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_wlan')">
-                        <h3><i class="fa-solid fa-wifi"></i> WLAN-Verbindung erstellen</h3>
-                        <h5>Mit dem Internet zu Hause verbinden</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="WLAN-Verbindung-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
-                    </div>
-                    <div id="Text_wlan" style="display: none">
-                        <hr />
-                        <button class="voice-btn" onclick="readContainer('Text_wlan')" aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.15.48.mp4
-" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
-
-                        <p><strong>WLAN einrichten - Schritt für Schritt:</strong></p>
-
-                        <ol class="step-list">
-                            <li>Entsperren Sie Ihr iPhone</li>
-                            <li>Öffnen Sie die "Einstellungen"-App</li>
-                            <li>Tippen Sie auf "WLAN" (ganz oben)</li>
-                            <li>Stellen Sie sicher, dass WLAN aktiviert ist (grüner Schalter)</li>
-                            <li>Suchen Sie in der Liste den Namen Ihres Heimnetzwerks</li>
-                            <li>Tippen Sie auf den Namen Ihres Netzwerks</li>
-                            <li>Geben Sie das WLAN-Passwort ein</li>
-                            <li>Tippen Sie auf "Verbinden"</li>
-                        </ol>
-
-                        <div class="tip-box">
-                            <strong>Wo finde ich mein WLAN-Passwort?</strong> Das Passwort steht meist auf einem
-                            Aufkleber auf Ihrem Router oder wurde Ihnen von Ihrem Internetanbieter mitgeteilt. Oft steht
-                            dort "WLAN-Schlüssel" oder "WiFi-Password".
-                        </div>
-
-                        <button class="interactive" onClick="ToggleText('Text_wlan')">Schließen</button>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="container-title" onClick="ToggleText('Text_backups')">
-                        <h3><i class="fa-solid fa-cloud"></i> Backups erstellen</h3>
-                        <h5>Ihre Daten sichern</h5>
-                        <a class="toggle-icon" role="button" tabindex="0" aria-label="Backup-Details anzeigen">
-                            Tippen zum Durchlesen
-                        </a>
-                    </div>
-                    <div id="Text_backups" style="display: none">
-                        <hr />
-                        <button
-                            class="voice-btn"
-                            onclick="readContainer('Text_backups')"
-                            aria-label="Container vorlesen">
-                            Vorlesen lassen
-                        </button>
-                        <button
-                            class="voice-btn"
-                            onclick="window.speechSynthesis.cancel();"
-                            aria-label="Vorlesen stoppen">
-                            Vorlesen stoppen
-                        </button>
-                        <br>
-                        <br>
-                        <video autoplay controls style="justify-content: center; text-align: center; max-width: 70%;">
-                            <source src="https://raw.githubusercontent.com/404-Code-Studio/SmartRenter-App/main/WhatsApp%20Video%202025-08-13%20at%2012.18.02.mp4
-" type="video/mp4" />
-                            Dein Smartphone kann das Video nicht anzeigen.
-                        </video>
-
-                        <p>
-                            <strong>Was ist ein Backup?</strong><br />
-                            Ein Backup ist eine Sicherheitskopie all Ihrer wichtigen Daten (Fotos, Kontakte,
-                            Nachrichten). Falls Ihr Handy kaputt geht oder verloren geht, können Sie alles
-                            wiederherstellen.
-                        </p>
-
-                        <p><strong>Backup erstellen:</strong></p>
-                        <ol class="step-list">
-                            <li>Öffnen Sie die "Einstellungen"-App</li>
-                            <li>Tippen Sie ganz oben auf Ihren Namen</li>
-                            <li>Tippen Sie auf "iCloud"</li>
-                            <li>Tippen Sie auf "iCloud-Backup"</li>
-                            <li>Stellen Sie sicher, dass "iCloud-Backup" aktiviert ist (grüner Schalter)</li>
-                            <li>Tippen Sie auf "Jetzt Backup erstellen"</li>
-                            <li>Warten Sie, bis das Backup abgeschlossen ist (kann einige Minuten dauern)</li>
-                        </ol>
-
-                        <div class="tip-box">
-                            <strong>Wichtig:</strong> Für Backups benötigen Sie eine WLAN-Verbindung und ausreichend
-                            iCloud-Speicherplatz. Das Backup läuft automatisch, wenn Ihr Handy geladen wird und mit WLAN
-                            verbunden ist.
-                        </div>
-
-                        <button class="interactive" onClick="ToggleText('Text_backups')">Schließen</button>
-                    </div>
-                </div>
-            </div>
+            </section>
         </main>
+
+        <footer
+            style="
+                margin-top: 40px;
+                text-align: center;
+                color: #6b7280;
+                border-top: 1px solid var(--border);
+                padding-top: 20px;
+            ">
+            <p>
+                <i class="fas fa-heart" style="color: #ef4444"></i> Erstellt mit Liebe für alle, die ihr IPhone besser
+                verstehen möchten
+            </p>
+            <p style="font-size: 14px">Erstellt von <a href="https://github.com/orgs/404-Code-Studio/repositories"><i class="fa-brands fa-github"></i> 404-Code Studios</a><br>
+                Version 2.1 - Fehler behoben</p>
+            <p style="font-size: 10px">Wir stehen in keiner Partnerschaft oder Verbindung zu <i class="fa-brands fa-apple"></i> Apple Inc. <wbr/>oder Samsung Electronics Co., Ltd</p>
+        </footer>
+
         <script>
-    const searchInput = document.getElementById("search");
-    const containerTitles = document.querySelectorAll(".container-title");
-    let colorLoopActive = false;
-    let colorLoopInterval = null;
+            // Enhanced JavaScript functionality
+            let currentFontSize = 18;
+            let isDarkMode = false;
+            let currentDifficulty = "beginner";
+            let completedTopics = JSON.parse(localStorage.getItem("completedTopics") || "[]");
+            let achievements = JSON.parse(localStorage.getItem("achievements") || "[]");
 
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        const originalQuery = searchInput.value; // Original für exakte Easter Egg Prüfung
-        
-        // Easter Egg Prüfung - nur bei exakter Eingabe "EasterEgg"
-        if (originalQuery === "EasterEgg") {
-            document.getElementById("EasterEgg").style.display = "block";
-            if (!colorLoopActive) {
-                startColorLoop();
-                colorLoopActive = true;
+            // Accessibility Functions
+            function increaseFontSize() {
+                if (currentFontSize < 24) {
+                    currentFontSize += 2;
+                    document.documentElement.style.setProperty("--font-size", currentFontSize + "px");
+                    showNotification("Schrift vergrößert", "success");
+                }
             }
-        } else {
-            document.getElementById("EasterEgg").style.display = "none";
-            // RGB Modus stoppen wenn nicht "EasterEgg"
-            if (colorLoopActive) {
-                stopColorLoop();
-                colorLoopActive = false;
+
+            function decreaseFontSize() {
+                if (currentFontSize > 14) {
+                    currentFontSize -= 2;
+                    document.documentElement.style.setProperty("--font-size", currentFontSize + "px");
+                    showNotification("Schrift verkleinert", "success");
+                }
             }
-        }
-        
-        // Normale Suchfunktion
-        containerTitles.forEach((el) => {
-            const text = el.textContent.toLowerCase();
-            if (text.includes(query) && query !== "" && originalQuery !== "EasterEgg") {
-                el.classList.add("highlight");
-            } else {
-                el.classList.remove("highlight");
+
+            function toggleDarkMode() {
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle("dark-mode");
+                const icon = document.getElementById("darkModeIcon");
+                icon.className = isDarkMode ? "fas fa-sun" : "fas fa-moon";
+                showNotification(isDarkMode ? "Dunkler Modus aktiviert" : "Heller Modus aktiviert", "success");
             }
-        });
-    });
 
-    function ToggleText(ID) {
-        const element = document.getElementById(ID);
-        const container = event.target.closest(".container");
-        const icon = container.querySelector(".toggle-icon");
-        if (element.style.display === "block") {
-            element.style.display = "none";
-            icon.classList.remove("rotated");
-            container.classList.remove("expanded");
-            icon.textContent = "Tippen zum Durchlesen";
-        } else {
-            element.style.display = "block";
-            icon.classList.add("rotated");
-            container.classList.add("expanded");
-            icon.textContent = "Zuklappen";
-        }
-    }
+            // Difficulty System
+            function setDifficulty(level) {
+                currentDifficulty = level;
+                document.querySelectorAll(".difficulty-btn").forEach((btn) => btn.classList.remove("active"));
+                event.target.classList.add("active");
 
-    function readContainer(containerID) {
-        if ("speechSynthesis" in window) {
-            speechSynthesis.cancel();
-            const container = document.getElementById(containerID);
-            const text = container.textContent.trim();
-            const utterance = new SpeechSynthesisUtterance(text);
-            // Deutsche Stimme falls verfügbar
-            const voices = speechSynthesis.getVoices();
-            const germanVoice = voices.find((voice) => voice.lang.includes("de"));
-            if (germanVoice) {
-                utterance.voice = germanVoice;
-            } else {
-                utterance.voice = germanVoice;
-                utterance.lang = "de-DE";
+                // Show/hide content based on difficulty
+                filterContentByDifficulty();
+                showNotification(`Schwierigkeitsgrad: ${getDifficultyName(level)}`, "info");
             }
-            utterance.rate = 0.9;
-            utterance.pitch = 1.0;
-            utterance.volume = 1.4;
-            speechSynthesis.speak(utterance);
-        } else {
-            alert("Ihr Smartphone unterstützt die Vorlese-Funktion leider nicht.");
-        }
-    }
 
-    function startColorLoop() {
-        const colors = ["red", "orange", "yellow", "green", "cyan", "blue", "indigo", "violet", "pink"];
-        let index = 0;
-        colorLoopInterval = setInterval(() => {
-            const currentColor = colors[index % colors.length];
-            document.documentElement.style.setProperty("--primary", currentColor);
-            index++;
-        }, 500); // alle 500ms Farbe ändern
-    }
+            function getDifficultyName(level) {
+                const names = { beginner: "Anfänger", intermediate: "Fortgeschritten", advanced: "Experte" };
+                return names[level] || "Anfänger";
+            }
 
-    function stopColorLoop() {
-        if (colorLoopInterval) {
-            clearInterval(colorLoopInterval);
-            colorLoopInterval = null;
-        }
-        // Zurück zur ursprünglichen Farbe
-        document.documentElement.style.removeProperty("--primary");
-    }
-</script>
+            function filterContentByDifficulty() {
+                const containers = document.querySelectorAll(".container[data-difficulty]");
+                containers.forEach((container) => {
+                    const difficulty = container.dataset.difficulty;
+                    const shouldShow =
+                        (currentDifficulty === "beginner" && difficulty === "beginner") ||
+                        (currentDifficulty === "intermediate" && ["beginner", "intermediate"].includes(difficulty)) ||
+                        currentDifficulty === "advanced";
+
+                    container.style.display = shouldShow ? "block" : "none";
+                });
+            }
+
+            // Enhanced Toggle Function
+            function toggleContent(contentId, titleElement) {
+                const content = document.getElementById(contentId);
+                const icon = titleElement.querySelector(".toggle-icon i");
+                const container = titleElement.closest(".container");
+
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    icon.className = "fas fa-chevron-down";
+                    titleElement.querySelector(".toggle-icon").innerHTML =
+                        '<i class="fas fa-chevron-down"></i> Jetzt lernen';
+                    container.classList.remove("expanded");
+                } else {
+                    content.style.display = "block";
+                    icon.className = "fas fa-chevron-up";
+                    titleElement.querySelector(".toggle-icon").innerHTML =
+                        '<i class="fas fa-chevron-up"></i> Zuklappen';
+                    container.classList.add("expanded");
+
+                    // Mark as completed
+                    const topic = container.dataset.topic;
+                    markTopicCompleted(topic);
+                }
+
+                updateBreadcrumb(titleElement.querySelector("h3").textContent);
+            }
+
+            // Progress System
+            function markTopicCompleted(topic) {
+                if (!completedTopics.includes(topic)) {
+                    completedTopics.push(topic);
+                    localStorage.setItem("completedTopics", JSON.stringify(completedTopics));
+                    updateProgress();
+                    checkAchievements();
+                    showNotification("Thema abgeschlossen! 🎉", "success");
+                }
+            }
+
+            function updateProgress() {
+                const totalTopics = document.querySelectorAll("[data-topic]").length;
+                const completedCount = completedTopics.length;
+                const percentage = Math.round((completedCount / totalTopics) * 100);
+
+                document.getElementById("progressBar").style.width = percentage + "%";
+                document.getElementById("progressText").textContent = percentage + "%";
+            }
+
+            // Achievement System
+            const achievementDefinitions = [
+                {
+                    id: "first_topic",
+                    name: "Erste Schritte",
+                    description: "Erstes Thema abgeschlossen",
+                    icon: "fas fa-baby"
+                },
+                {
+                    id: "security_aware",
+                    name: "Sicherheits-Experte",
+                    description: "Sicherheitsthema abgeschlossen",
+                    icon: "fas fa-shield-alt"
+                },
+                {
+                    id: "communicator",
+                    name: "Kommunikator",
+                    description: "Nachrichten und Anrufe gemeistert",
+                    icon: "fas fa-comments"
+                },
+                {
+                    id: "half_way",
+                    name: "Halbzeit",
+                    description: "50% aller Themen abgeschlossen",
+                    icon: "fas fa-star-half-alt"
+                },
+                { id: "master", name: "IPhone-Meister", description: "Alle Themen abgeschlossen", icon: "fas fa-crown" }
+            ];
+
+            function checkAchievements() {
+                const newAchievements = [];
+
+                // First topic
+                if (completedTopics.length >= 1 && !achievements.includes("first_topic")) {
+                    newAchievements.push("first_topic");
+                }
+
+                // Security expert
+                if (completedTopics.includes("sicherheit") && !achievements.includes("security_aware")) {
+                    newAchievements.push("security_aware");
+                }
+
+                // Communicator
+                if (
+                    completedTopics.includes("nachrichten") &&
+                    completedTopics.includes("anrufe") &&
+                    !achievements.includes("communicator")
+                ) {
+                    newAchievements.push("communicator");
+                }
+
+                // Half way
+                const totalTopics = document.querySelectorAll("[data-topic]").length;
+                if (completedTopics.length >= totalTopics / 2 && !achievements.includes("half_way")) {
+                    newAchievements.push("half_way");
+                }
+
+                // Master
+                if (completedTopics.length >= totalTopics && !achievements.includes("master")) {
+                    newAchievements.push("master");
+                }
+
+                // Add new achievements
+                newAchievements.forEach((achievementId) => {
+                    achievements.push(achievementId);
+                    showAchievement(achievementId);
+                });
+
+                if (newAchievements.length > 0) {
+                    localStorage.setItem("achievements", JSON.stringify(achievements));
+                    renderAchievements();
+                }
+            }
+
+            function showAchievement(achievementId) {
+                const achievement = achievementDefinitions.find((a) => a.id === achievementId);
+                if (achievement) {
+                    showNotification(`🏆 Erfolg freigeschaltet: ${achievement.name}!`, "success");
+                }
+            }
+
+            function renderAchievements() {
+                const container = document.getElementById("achievementContainer");
+                container.innerHTML = "";
+
+                achievementDefinitions.forEach((achievement) => {
+                    const earned = achievements.includes(achievement.id);
+                    const div = document.createElement("div");
+                    div.style.cssText = `
+                        padding: 15px;
+                        border-radius: 10px;
+                        text-align: center;
+                        min-width: 150px;
+                        ${
+                            earned
+                                ? "background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white;"
+                                : "background: #f3f4f6; color: #9ca3af;"
+                        }
+                        transition: transform 0.3s;
+                    `;
+                    div.innerHTML = `
+                        <i class="${achievement.icon}" style="font-size: 24px; margin-bottom: 8px;"></i><br>
+                        <strong>${achievement.name}</strong><br>
+                        <small>${achievement.description}</small>
+                    `;
+                    if (earned) {
+                        div.addEventListener("mouseenter", () => (div.style.transform = "scale(1.05)"));
+                        div.addEventListener("mouseleave", () => (div.style.transform = "scale(1)"));
+                    }
+                    container.appendChild(div);
+                });
+            }
+
+            // Breadcrumb Navigation
+            function updateBreadcrumb(currentPage) {
+                const breadcrumb = document.getElementById("breadcrumb");
+                breadcrumb.innerHTML = `
+                    <i class="fas fa-home"></i> <a href="#" onclick="goHome()">Startseite</a> 
+                    <i class="fas fa-chevron-right" style="margin: 0 8px;"></i> 
+                    <span>${currentPage}</span>
+                `;
+            }
+
+            function goHome() {
+                document.getElementById("breadcrumb").innerHTML =
+                    '<i class="fas fa-home"></i> <a href="#" onclick="goHome()">Startseite</a>';
+                // Close all open containers
+                document.querySelectorAll('[id^="Text_"]').forEach((el) => {
+                    el.style.display = "none";
+                });
+                // Reset all toggle icons
+                document.querySelectorAll(".toggle-icon").forEach((icon) => {
+                    icon.innerHTML = '<i class="fas fa-chevron-down"></i> Jetzt lernen';
+                });
+            }
+
+            // Enhanced Search
+            const searchInput = document.getElementById("search");
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.toLowerCase();
+                const containers = document.querySelectorAll(".container");
+
+                containers.forEach((container) => {
+                    const text = container.textContent.toLowerCase();
+                    const isMatch = text.includes(query) && query !== "";
+
+                    if (isMatch) {
+                        container.style.display = "block";
+                        container.classList.add("highlight");
+                    } else if (query === "") {
+                        container.classList.remove("highlight");
+                        filterContentByDifficulty();
+                    } else {
+                        container.classList.remove("highlight");
+                    }
+                });
+            });
+
+            // Enhanced Text-to-Speech
+            function readContainer(containerID) {
+                if ("speechSynthesis" in window) {
+                    speechSynthesis.cancel();
+                    const container = document.getElementById(containerID);
+                    let text = container.textContent
+                        .replace(/\s+/g, " ")
+                        .replace(/([.!?])\s*/g, "$1 ")
+                        .trim();
+
+                    const utterance = new SpeechSynthesisUtterance(text);
+
+                    // Wait for voices to load
+                    const setVoice = () => {
+                        const voices = speechSynthesis.getVoices();
+                        const germanVoice = voices.find(
+                            (voice) => voice.lang.includes("de") || voice.name.includes("German")
+                        );
+                        if (germanVoice) {
+                            utterance.voice = germanVoice;
+                        }
+                        utterance.lang = "de-DE";
+                    };
+
+                    if (speechSynthesis.getVoices().length > 0) {
+                        setVoice();
+                    } else {
+                        speechSynthesis.addEventListener("voiceschanged", setVoice);
+                    }
+
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 1.0;
+
+                    speechSynthesis.speak(utterance);
+                    showNotification("Vorlesen gestartet", "info");
+                } else {
+                    showNotification("Vorlese-Funktion wird nicht unterstützt", "error");
+                }
+            }
+
+            // Quiz System
+            function selectQuizAnswer(element, isCorrect) {
+                // Remove previous selections
+                element.parentElement.querySelectorAll(".quiz-option").forEach((opt) => {
+                    opt.classList.remove("correct", "incorrect");
+                });
+
+                // Mark selected answer
+                element.classList.add(isCorrect ? "correct" : "incorrect");
+
+                // Show all correct answers
+                if (!isCorrect) {
+                    element.parentElement.querySelectorAll(".quiz-option").forEach((opt) => {
+                        if (opt !== element) {
+                            // This would need to be enhanced to mark the actually correct answer
+                        }
+                    });
+                }
+
+                setTimeout(() => {
+                    showNotification(
+                        isCorrect ? "Richtig! 🎉" : "Nicht ganz richtig, aber gut versucht! 💪",
+                        isCorrect ? "success" : "warning"
+                    );
+                }, 500);
+            }
+
+            // Notification System
+            function showNotification(message, type = "info") {
+                const notification = document.createElement("div");
+                const colors = {
+                    success: "background: #10b981; color: white;",
+                    error: "background: #ef4444; color: white;",
+                    warning: "background: #f59e0b; color: white;",
+                    info: "background: #3b82f6; color: white;"
+                };
+
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 10000;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    ${colors[type]}
+                    animation: slideInDown 0.3s ease-out;
+                `;
+                notification.textContent = message;
+
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.style.animation = "slideOutUp 0.3s ease-out";
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Add CSS animations
+            const style = document.createElement("style");
+            style.textContent = `
+                @keyframes slideInDown {
+                    from { transform: translate(-50%, -100%); opacity: 0; }
+                    to { transform: translate(-50%, 0); opacity: 1; }
+                }
+                @keyframes slideOutUp {
+                    from { transform: translate(-50%, 0); opacity: 1; }
+                    to { transform: translate(-50%, -100%); opacity: 0; }
+                }
+                .highlight {
+                    background: linear-gradient(135deg, var(--primary-light), #bfdbfe) !important;
+                    border-color: var(--primary) !important;
+                    transform: scale(1.02);
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Initialize app
+            document.addEventListener("DOMContentLoaded", () => {
+                updateProgress();
+                renderAchievements();
+                filterContentByDifficulty();
+                showNotification("Willkommen bei SmartGuide! 👋", "success");
+            });
+
+            let keysPressed = {};
+
+            document.addEventListener("keydown", (e) => {
+                keysPressed[e.key.toLowerCase()] = true;
+
+                if (keysPressed["shift"] && keysPressed["k"] && keysPressed["w"]) {
+                    toggleFullScreen();
+                }
+            });
+
+            document.addEventListener("keyup", (e) => {
+                delete keysPressed[e.key.toLowerCase()];
+            });
+
+            function toggleFullScreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch((err) => {
+                        console.error(`Fehler beim Umschalten auf Vollbild: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        </script>
     </body>
 </html>
