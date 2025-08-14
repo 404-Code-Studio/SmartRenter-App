@@ -2,4 +2,4 @@
 # SmartGuide
 Für das Code+Design Camp
 
-https://404-code-studio.github.io/SmartRenter-App/
+https://404-code-studio.github.io/SmartGuide/
