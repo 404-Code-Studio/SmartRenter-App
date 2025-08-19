@@ -451,7 +451,9 @@
 
         <header>
             <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px">
-                <img style="max-width: 20%; max-height: 20%; filter: invert();" src="https://raw.githubusercontent.com/404-Code-Studio/SmartGuide/main/20250814_1453_SmartGuide%20Logo%20Design_simple_compose_01k2ma6t3ef74a2f6421mpkn5z.png"/>
+                <img
+                    style="max-width: 20%; max-height: 20%; filter: invert()"
+                    src="https://raw.githubusercontent.com/404-Code-Studio/SmartGuide/main/20250814_1453_SmartGuide%20Logo%20Design_simple_compose_01k2ma6t3ef74a2f6421mpkn5z.png" />
                 <div>
                     <h1 style="margin: 0; color: var(--primary)">SmartGuide</h1>
                     <p style="margin: 5px 0; color: #6b7280">Ihr freundlicher IPhone-Begleiter</p>
@@ -651,6 +653,9 @@
                             <button class="voice-btn" onclick="readContainer('Text_Sicherheit')">
                                 <i class="fas fa-volume-up"></i> Vorlesen
                             </button>
+                            <button class="voice-btn" onclick="window.speechSynthesis.cancel();">
+                                <i class="fas fa-stop"></i> Stoppen
+                            </button>
                         </div>
 
                         <div class="warning-box">
@@ -701,6 +706,9 @@
                         <div style="margin: 15px 0">
                             <button class="voice-btn" onclick="readContainer('Text_Notfall')">
                                 <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                            <button class="voice-btn" onclick="window.speechSynthesis.cancel();">
+                                <i class="fas fa-stop"></i> Stoppen
                             </button>
                         </div>
 
@@ -759,6 +767,9 @@
                             <button class="voice-btn" onclick="readContainer('Text_Fotos')">
                                 <i class="fas fa-volume-up"></i> Vorlesen
                             </button>
+                            <button class="voice-btn" onclick="window.speechSynthesis.cancel();">
+                                <i class="fas fa-stop"></i> Stoppen
+                            </button>
                         </div>
 
                         <h4><i class="fas fa-camera"></i> Fotos aufnehmen:</h4>
@@ -801,6 +812,9 @@
                         <div style="margin: 15px 0">
                             <button class="voice-btn" onclick="readContainer('Text_Navigation')">
                                 <i class="fas fa-volume-up"></i> Vorlesen
+                            </button>
+                            <button class="voice-btn" onclick="window.speechSynthesis.cancel();">
+                                <i class="fas fa-stop"></i> Stoppen
                             </button>
                         </div>
 
@@ -959,9 +973,17 @@
                 <i class="fas fa-heart" style="color: #ef4444"></i> Erstellt mit Liebe für alle, die ihr IPhone besser
                 verstehen möchten
             </p>
-            <p style="font-size: 14px">Erstellt von <a href="https://github.com/orgs/404-Code-Studio/repositories"><i class="fa-brands fa-github"></i> 404-Code Studios</a><br>
-                Version 2.1 - Fehler behoben</p>
-            <p style="font-size: 10px">Wir stehen in keiner Partnerschaft oder Verbindung zu <i class="fa-brands fa-apple"></i> Apple Inc. <wbr/>oder Samsung Electronics Co., Ltd</p>
+            <p style="font-size: 14px">
+                Erstellt von
+                <a href="https://github.com/orgs/404-Code-Studio/repositories"
+                    ><i class="fa-brands fa-github"></i> 404-Code Studios</a
+                ><br />
+                Version 2.1 - Fehler behoben
+            </p>
+            <p style="font-size: 10px">
+                Wir stehen in keiner Partnerschaft oder Verbindung zu <i class="fa-brands fa-apple"></i> Apple Inc.
+                <wbr />oder Samsung Electronics Co., Ltd
+            </p>
         </footer>
 
         <script>
